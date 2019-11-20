@@ -11,9 +11,10 @@ public class Main {
     public static Database db = new Database();
     
     public static void main(String[] args) {
-        mainMenu();
+        //mainMenu();
         //testingCI2222
         //test();
+        System.out.println(db.registerList.get(1));
         
         //Registration r = new Registration();
         
@@ -22,7 +23,7 @@ public class Main {
     
     private static void test() {
         MyList<String> a = new MyArrayList<String>();
-        
+
         a.add("1");
         a.add("2");
         a.add("3");
@@ -35,9 +36,6 @@ public class Main {
     
     public static void mainMenu() {
         String input;
-            
-        System.out.println(Student.getCount());
-        System.out.println(StudentRegistration.getCount());
         
         while (true) {
             // menu selection start

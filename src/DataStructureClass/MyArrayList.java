@@ -26,6 +26,7 @@ public class MyArrayList<T> implements MyList<T> {
                 this.resizeArray();
             }
             this.data[count++] = obj;
+            
         }
 
     }
@@ -136,6 +137,11 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public boolean replace(Integer givenPosition, T newEntry) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public T getLast() {
+        return this.data[count - 1];
     }
 
     @Override

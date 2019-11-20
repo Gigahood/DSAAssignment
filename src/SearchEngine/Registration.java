@@ -28,7 +28,8 @@ public class Registration {
         String edubg = scan.nextLine();
         
         Student newStudent = new Student(firstName, lastName, ic, edubg);
-        StudentRegistration newRegister = new StudentRegistration(new Date(), "approved", newStudent);
+        StudentRegistration newRegister = new StudentRegistration(new Date(), "Pending", newStudent, 
+                                                Main.db.registerList.getLast());
         Main.db.registerList.add(newRegister);
         
         System.out.println(Main.db.registerList.size());
