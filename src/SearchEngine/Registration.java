@@ -40,8 +40,7 @@ public class Registration {
         System.out.println("Please go to View Registration to check the current status of you registration.");        
         System.out.println("Press Enter to continue...");
         scan.nextLine();
-        Main.clearScreen();
-       
-                
+        Main.clearScreen();         
     }
+    
 }

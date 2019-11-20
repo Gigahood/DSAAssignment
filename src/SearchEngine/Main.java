@@ -1,9 +1,6 @@
 package SearchEngine;
 
-import DataClass.*;
 import DataStructureClass.*;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -11,13 +8,11 @@ public class Main {
     public static Database db = new Database();
     
     public static void main(String[] args) {
-        mainMenu();
-        //testingCI2222
-        //test();
+        //mainMenu();
+        System.out.println(db.studentList);
+//        AdminModule am = new AdminModule();
+//        am.Navigation();
         
-        //Registration r = new Registration();
-        
-        //Login l = new Login();
     }
     
     private static void test() {

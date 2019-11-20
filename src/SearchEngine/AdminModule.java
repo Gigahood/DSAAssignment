@@ -4,6 +4,7 @@ import Constant.StringVar;
 import DataClass.Admin;
 
 public class AdminModule {
+
     private Admin admin;
     private int index;
     private String input;
@@ -14,19 +15,20 @@ public class AdminModule {
     public AdminModule(Admin admin, int index) {
         this.admin = admin;
         this.index = index;
-        
+
         Navigation();
     }
-    
+
     public void Menu() {
         Main.clearScreen();
         System.out.println("------** Admin Page **-------");
-        System.out.println("Welcome, "+Main.db.adminList.get(index).getGender()+" "+Main.db.adminList.get(index).getName()+" ~");
-        System.out.println("1. Search Detail");
-        System.out.println("2. Return");
+        System.out.println("Welcome, " + Main.db.adminList.get(index).getGender() + " " + Main.db.adminList.get(index).getName() + " ~");
+        System.out.println("1. Search Student Detail By Student ID");
+        System.out.println("2. Search Student Detail By Registration Status");
+        System.out.println("3. Return");
         System.out.print("Your Selection ---> ");
     }
-    
+
     public void Navigation() {
 
         while (true) {
@@ -34,12 +36,12 @@ public class AdminModule {
                 Menu();
                 input = Main.scan.nextLine();
 
-                if (Main.checkInputMenu(2, input)) {
+                if (Main.checkInputMenu(3, input)) {
                     break;
                 }
             }
 
-            if (input.equals("2")) {
+            if (input.equals("3")) {
                 Main.clearScreen();
                 break;
             }
@@ -48,18 +50,19 @@ public class AdminModule {
                 case "1":
                     ShowSearchDetail();
                     break;
+                case "2":
+                    SearchByRegistrationStatus();
+                    break;
             }
         }
     }
-    
-    public void ShowSearchDetail(){
+
+    public void ShowSearchDetail() {
         System.out.println("Please enter the student ID:");
         String ID = Main.scan.nextLine();
-        
-        for (int index=0;index<Main.db.studentList.size();index++)
-        {
-            if (ID.equals(Main.db.studentList.get(index).getStudentID()))
-            {
+
+        for (int index = 0; index < Main.db.studentList.size(); index++) {
+            if (ID.equals(Main.db.studentList.get(index).getStudentID())) {
                 System.out.println("-----------------------------------------------------");
                 System.out.println(String.format("|%-50s|", StringVar.LBL_STUDENT_DETAIL));
                 System.out.println("-----------------------------------------------------");
@@ -75,17 +78,32 @@ public class AdminModule {
                 System.out.println("");
                 System.out.println("");
                 break;
-            }
-            else
-            {
-               if (index==Main.db.studentList.size()-1)
-               {
+            } else {
+                if (index == Main.db.studentList.size() - 1) {
                     System.out.println("Student ID doesn't exist!");
                     System.out.println("Please press again.");
                     break;
-               }
+                }
 
             }
         }
+    }
+
+    private void SearchByRegistrationStatus() {
+        while (true) {
+            Main.clearScreen();
+            System.out.println("Please select status : ");
+            System.out.println("1. Pending");
+            System.out.println("2. Return");
+            System.out.println("");
+            System.out.print("Your Selection ---> ");
+            String input = Main.scan.nextLine();
+            System.out.println("");
+            if (Main.checkInputMenu(3, input)) {
+                System.out.println("Invalid Menu Choice!!");
+                break;
+            }
+        }
+
     }
 }

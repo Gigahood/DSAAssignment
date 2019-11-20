@@ -17,10 +17,11 @@ public class Database {
     
     private void addStudentData() {
         Student s1 = new Student("Kuek", "Yong Boon", "940526105481", "Foundation");
+        Student s2 = new Student("Kuek", "Yong Boon", "940526105481", "Foundation");
         StudentRegistration r1 = new StudentRegistration(new Date(), "Pending", s1);
         registerList.add(r1);
         studentList.add(s1);
-        //System.out.println(s1);
+        studentList.add(s2);
     }
     
     private void addAdminData() {
