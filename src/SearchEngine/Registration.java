@@ -28,11 +28,11 @@ public class Registration {
         String edubg = scan.nextLine();
         
         Student newStudent = new Student(firstName, lastName, ic, edubg);
-        StudentRegistration newRegister = new StudentRegistration(new Date(), "pending", newStudent);
+        StudentRegistration newRegister = new StudentRegistration(new Date(), "approved", newStudent);
         Main.db.registerList.add(newRegister);
         
-//        System.out.println(Main.db.registerList.size());
-//        System.out.println(Main.db.registerList.get(1));
+        System.out.println(Main.db.registerList.size());
+        System.out.println(Main.db.registerList.get(1));
         System.out.println("");
         System.out.println("This is your registration ID : " + newRegister.getRegistrationID());
         System.out.println("Your password is : " + newRegister.getPassword());

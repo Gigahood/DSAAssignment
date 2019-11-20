@@ -35,7 +35,10 @@ public class Main {
     
     public static void mainMenu() {
         String input;
-
+            
+        System.out.println(Student.getCount());
+        System.out.println(StudentRegistration.getCount());
+        
         while (true) {
             // menu selection start
             while (true) {

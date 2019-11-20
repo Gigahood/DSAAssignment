@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class Student {
     // count represent total number of student in current semester
-    private static int count = 0;
+    private static int count1 = 0;
     private String studentID;
     private String firstName;
     private String lastName;
@@ -27,8 +27,10 @@ public class Student {
         this.password = ic;
         this.eduBackground = eduBackground;
         this.cgpa = 0.00;
+        this.studyStatus="good";
        // this.registration = registration;
-        setStudentID();
+        //3
+        //setStudentID();
     }
 
 //    //<editor-fold desc="extra constructor tbc">
@@ -77,11 +79,11 @@ public class Student {
     }
 
     public static int getCount() {
-        return count;
+        return count1;
     }
 
     public static void setCount(int count) {
-        Student.count = count;
+        Student.count1 = count;
     }
 
     public String getStudentID() {
@@ -133,10 +135,10 @@ public class Student {
     
 /******************************************************************************/
     public void setStudentID() {
-        count++;
+        count1++;
         int year = Calendar.getInstance().get(Calendar.YEAR);
         String last2Digit = (Integer.toString(year)).substring(2);
-        String formatedID = last2Digit + String.format("%05d",count);
+        String formatedID = last2Digit + String.format("%05d",count1);
 
         this.studentID = formatedID;
     }

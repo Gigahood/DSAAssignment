@@ -21,6 +21,7 @@ public class StudentRegistration {
         this.registrationStatus = registrationStatus;
         this.password = this.student.getIc();
         setRegistrationID();
+        checkRegistrationStatus();
     }
 
     public static long getCount() {
@@ -85,6 +86,12 @@ public class StudentRegistration {
         String formatedID = last2Digit + String.format("%05d",count);
 
         this.registrationID = formatedID;
+    }
+    
+    private void checkRegistrationStatus() {
+        if (this.registrationStatus.equals("approved")) {
+            this.student.setStudentID();
+        }
     }
     
     
