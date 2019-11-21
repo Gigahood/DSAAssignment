@@ -20,7 +20,6 @@ public class Database {
         StudentRegistration r1 = new StudentRegistration(new Date(), "approved", s1, null);
         registerList.add(r1);
         studentList.add(s1);
-        studentList.add(s2);
     }
     
     private void addAdminData() {

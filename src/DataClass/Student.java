@@ -27,10 +27,7 @@ public class Student {
         this.password = ic;
         this.eduBackground = eduBackground;
         this.cgpa = 0.00;
-        this.studyStatus="good";
-       // this.registration = registration;
-        //3
-        //setStudentID();
+        this.studyStatus = "good";
     }
 
     public String getFirstName() {
@@ -105,13 +102,6 @@ public class Student {
         this.cgpa = cgpa;
     }
 
-//    public StudentRegistration getRegistration() {
-//        return registration;
-//    }
-//
-//    public void setRegistration(StudentRegistration registration) {
-//        this.registration = registration;
-//    }
     
 /*************************** Override**********************************************/
     @Override

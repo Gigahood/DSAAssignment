@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class AdminModule {
 
-    private Admin admin;
     private int index;
     private String input;
 
