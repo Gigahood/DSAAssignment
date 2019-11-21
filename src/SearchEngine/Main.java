@@ -1,9 +1,6 @@
 package SearchEngine;
 
-import DataClass.*;
 import DataStructureClass.*;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -11,27 +8,17 @@ public class Main {
     public static Database db = new Database();
     
     public static void main(String[] args) {
-        //mainMenu();
-        //testingCI2222
+        mainMenu();
         //test();
-        System.out.println(db.registerList.get(1));
         
-        //Registration r = new Registration();
-        
-        //Login l = new Login();
     }
     
     private static void test() {
-        MyList<String> a = new MyArrayList<String>();
-
-        a.add("1");
-        a.add("2");
-        a.add("3");
-        a.add("4");
-        
-        a.remove("1");
-        
-        System.out.println(a.indexOf(null));
+        String str = "";
+        str += String.format("%-20s %-10s", "StudentID", "student Name\n");
+        str += String.format("123" , "213123213\n");
+        str += String.format("%-20s %-10s", "123123231231231" , "213123213");
+        System.out.println(str);
     }
     
     public static void mainMenu() {

@@ -2,7 +2,6 @@ package SearchEngine;
 
 import DataClass.Admin;
 import DataClass.Student;
-import static SearchEngine.Main.scan;
 
 public class Login {
     Admin admin;

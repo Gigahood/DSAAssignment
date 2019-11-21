@@ -4,10 +4,12 @@ import Constant.StringVar;
 import DataClass.Admin;
 import DataClass.Student;
 import DataClass.StudentRegistration;
+import DataStructureClass.MyArrayList;
+import DataStructureClass.MyList;
 import java.util.Date;
 
 public class AdminModule {
-    
+
     private int index;
     private String input;
 
@@ -15,25 +17,25 @@ public class AdminModule {
     }
 
     public AdminModule(int index) {
-        
+
         this.index = index;
-        
+
         Navigation();
     }
-    
+
     public void Menu() {
         //Main.clearScreen();
         System.out.println("");
         System.out.println("");
         System.out.println("");
         System.out.println("------** Admin Page **-------");
-        System.out.println("Welcome, "+Main.db.adminList.get(index).getGender()+" "+Main.db.adminList.get(index).getName()+" ~");
-        System.out.println("1. Search Detail");
+        System.out.println("Welcome, " + Main.db.adminList.get(index).getGender() + " " + Main.db.adminList.get(index).getName() + " ~");
+        System.out.println("1. Search Student Detail");
         System.out.println("2. Register Student");
         System.out.println("3. Return");
         System.out.print("Your Selection ---> ");
     }
-    
+
     public void Navigation() {
 
         while (true) {
@@ -53,26 +55,24 @@ public class AdminModule {
 
             switch (input) {
                 case "1":
-                    ShowSearchDetail();
+                    searchStudentDetailUI();
                     break;
-                    
+
                 case "2":
                     //RegisterStudent();
                     break;
-                    
+
             }
-            
+
         }
     }
-    
-    public void ShowSearchDetail(){
+
+    public void ShowSearchDetail() {
         System.out.println("Please enter the student ID:");
         String ID = Main.scan.nextLine();
-        
-        for (int index=0;index<Main.db.studentList.size();index++)
-        {
-            if (ID.equals(Main.db.studentList.get(index).getStudentID()))
-            {
+
+        for (int index = 0; index < Main.db.studentList.size(); index++) {
+            if (ID.equals(Main.db.studentList.get(index).getStudentID())) {
                 System.out.println("-----------------------------------------------------");
                 System.out.println(String.format("|%-50s|", StringVar.LBL_STUDENT_DETAIL));
                 System.out.println("-----------------------------------------------------");
@@ -88,20 +88,17 @@ public class AdminModule {
                 System.out.println("");
                 System.out.println("");
                 break;
-            }
-            else
-            {
-               if (index==Main.db.studentList.size()-1)
-               {
+            } else {
+                if (index == Main.db.studentList.size() - 1) {
                     System.out.println("Student ID doesn't exist!");
                     System.out.println("Please press again.");
                     break;
-               }
+                }
 
             }
         }
     }
-    
+
 //    public void RegisterStudent(){
 //        Main.banner();
 //        System.out.print("First Name: ");
@@ -140,5 +137,114 @@ public class AdminModule {
 //        Main.scan.nextLine();
 //        
 //    }
-    
+    /**
+     * ***********************************************************************
+     */
+    private void searchStudentDetailUI() {
+        String input;
+        while (true) {
+            while (true) {
+                Main.clearScreen();
+                System.out.println("Seach Student Details : ");
+                System.out.println("Please select your Criteria : ");
+                System.out.println("1. Search By student ID");
+                System.out.println("2. Search By Registration Status");
+                System.out.println("3. Return");
+                System.out.println("");
+                System.out.print("Your Selection ---> ");
+                input = Main.scan.nextLine();
+                if (Main.checkInputMenu(3, input)) {
+                    break;
+                }
+
+            }
+
+            if (input.equals("3")) {
+                break;
+            }
+
+            switch (input) {
+                case "1":
+                    ShowSearchDetail();
+                    break;
+                case "2":
+                    searchByRegistrationStatus();
+                    break;
+            }
+
+        }
+
+    }
+
+    private void searchByRegistrationStatus() {
+        String input;
+
+        while (true) {
+            //menu selection start
+            while (true) {
+                searchByRegistrationStatusUI();
+                input = Main.scan.nextLine();
+
+                // using check input method to validate only number will be entered
+                if (Main.checkInputMenu(4, input)) {
+                    break;
+                }
+            }// menu selection end
+
+            if (input.equals("4")) {
+                break;
+            }
+
+            switch (input) {
+                case "1":
+                    searchByPending();
+                    break;
+                case "2":
+                    //searchByRejected();
+                    break;
+                case "3":
+                    //searchByApproved();
+                    break;
+            }
+        }
+    }
+
+    private void searchByRegistrationStatusUI() {
+        Main.clearScreen();
+        System.out.println("Search Student Detail : ");
+        System.out.println("");
+        System.out.println("Please enter Registration Status that you want to search");
+        System.out.println("1. Pending");
+        System.out.println("2. Rejected");
+        System.out.println("3. Approved");
+        System.out.println("4. Return");
+        System.out.println("");
+        System.out.print("Your Selection ---> ");
+    }
+
+    private void searchByPending() {
+        MyList<StudentRegistration> registrationList = Main.db.registerList;
+        int length = registrationList.size();
+        int studentIndex = 1;
+        String str = "";
+        str += String.format("%-10s %-30s %-15s\n", "No.", "Registration ID", "Status");
+        
+        for (int i = 0; i < length; i++) {
+            if (registrationList.get(i).getStatus() == "pending") {
+                str += String.format("%-10s %-30s %-15s\n", studentIndex, registrationList.get(i).getRegistrationID() 
+                        , registrationList.get(i).getStatus());
+                studentIndex++;
+            }
+        }
+        System.out.println(str);
+        System.out.println("");
+        System.out.println("");
+        if (studentIndex == 1) {
+            System.out.println("Currently No Pending Student Registration!");
+        }
+        System.out.println("Press Enter To Continue...");
+        Main.scan.nextLine();
+
+    }
+
 }

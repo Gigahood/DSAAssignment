@@ -27,24 +27,8 @@ public class Student {
         this.password = ic;
         this.eduBackground = eduBackground;
         this.cgpa = 0.00;
-        this.studyStatus="good";
-       // this.registration = registration;
-        //3
-        //setStudentID();
+        this.studyStatus = "good";
     }
-
-//    //<editor-fold desc="extra constructor tbc">
-//    public Student(String firstName, String lastName, long ic, String eduBackground, Date dateOfBirth, String contactNumber, String homeAddress, String emailAddress) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.ic = ic;
-//        this.eduBackground = eduBackground;
-//        this.dateOfBirth = dateOfBirth;
-//        this.contactNumber = contactNumber;
-//        this.homeAddress = homeAddress;
-//        this.emailAddress = emailAddress;
-//    }
-//    //</editor-fold>
 
     public String getFirstName() {
         return firstName;
@@ -118,19 +102,13 @@ public class Student {
         this.cgpa = cgpa;
     }
 
-//    public StudentRegistration getRegistration() {
-//        return registration;
-//    }
-//
-//    public void setRegistration(StudentRegistration registration) {
-//        this.registration = registration;
-//    }
     
 /*************************** Override**********************************************/
     @Override
     public String toString() {
-        return "Password :" + this.password
-                + "\nStudent ID : " + this.studentID; 
+        return "Student ID : " + this.studentID
+                + "\nStudent Name : " + this.firstName + " " + this.lastName
+                + "\nIC : " + this.ic; 
     }
     
 /******************************************************************************/
