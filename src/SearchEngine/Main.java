@@ -14,16 +14,11 @@ public class Main {
     }
     
     private static void test() {
-        MyList<String> a = new MyArrayList<String>();
-
-        a.add("1");
-        a.add("2");
-        a.add("3");
-        a.add("4");
-        
-        a.remove("1");
-        
-        System.out.println(a.indexOf(null));
+        String str = "";
+        str += String.format("%-20s %-10s", "StudentID", "student Name\n");
+        str += String.format("123" , "213123213\n");
+        str += String.format("%-20s %-10s", "123123231231231" , "213123213");
+        System.out.println(str);
     }
     
     public static void mainMenu() {

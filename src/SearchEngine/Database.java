@@ -23,6 +23,12 @@ public class Database {
         Student s2 = new Student("Kuek", "Yong Tat", "940526105482", "Foundation");
         StudentRegistration r2 = new StudentRegistration(new Date(), "pending", s2, registerList.getLast());
         registerList.add(r2);
+        Student s3 = new Student("Ong", "Yong Tat", "940526105482", "Foundation");
+        StudentRegistration r3 = new StudentRegistration(new Date(), "rejected", s3, registerList.getLast());
+        registerList.add(r3);
+        Student s4 = new Student("Kuek", "Yong Tat", "940526105482", "Foundation");
+        StudentRegistration r4 = new StudentRegistration(new Date(), "pending", s4, registerList.getLast());
+        registerList.add(r4);
     }
     
     private void addAdminData() {

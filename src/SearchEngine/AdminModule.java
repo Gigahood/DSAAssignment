@@ -226,16 +226,17 @@ public class AdminModule {
         MyList<StudentRegistration> registrationList = Main.db.registerList;
         int length = registrationList.size();
         int studentIndex = 1;
-
+        String str = "";
+        str += String.format("%-10s %-30s %-15s\n", "No.", "Registration ID", "Status");
+        
         for (int i = 0; i < length; i++) {
             if (registrationList.get(i).getStatus() == "pending") {
-                System.out.println("Student " + studentIndex + " :");
-                System.out.println("");
-                System.out.println(registrationList.get(i));
+                str += String.format("%-10s %-30s %-15s\n", studentIndex, registrationList.get(i).getRegistrationID() 
+                        , registrationList.get(i).getStatus());
                 studentIndex++;
             }
         }
-
+        System.out.println(str);
         System.out.println("");
         System.out.println("");
         if (studentIndex == 1) {

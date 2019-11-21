@@ -106,8 +106,9 @@ public class Student {
 /*************************** Override**********************************************/
     @Override
     public String toString() {
-        return "Password :" + this.password
-                + "\nStudent ID : " + this.studentID; 
+        return "Student ID : " + this.studentID
+                + "\nStudent Name : " + this.firstName + " " + this.lastName
+                + "\nIC : " + this.ic; 
     }
     
 /******************************************************************************/
