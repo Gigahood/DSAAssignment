@@ -3,6 +3,7 @@ package DataClass;
 import java.util.Calendar;
 
 public class Student {
+
     // count represent total number of student in current semester
     private static int studentCount = 0;
     private String studentID;
@@ -14,13 +15,17 @@ public class Student {
     private String studyStatus;
     private Double cgpa;
     //private StudentRegistration registration;
+    private String contactNumber;
+    private String address;
+    private String postcode;
+    private String city;
+    private String state;
 
     public Student() {
 
     }
-    
-    public Student(String firstName, String lastName, String ic ,
-            String eduBackground) {
+
+    public Student(String firstName, String lastName, String ic, String eduBackground) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ic = ic;
@@ -28,6 +33,18 @@ public class Student {
         this.eduBackground = eduBackground;
         this.cgpa = 0.00;
         this.studyStatus = "good";
+    }
+
+    public Student(String firstName, String lastName, String ic, String eduBackground, String contactNumber, String address, String postcode, String city, String state) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ic = ic;
+        this.eduBackground = eduBackground;
+        this.contactNumber = contactNumber;
+        this.address = address;
+        this.postcode = postcode;
+        this.city = city;
+        this.state = state;
     }
 
     public String getFirstName() {
@@ -102,23 +119,59 @@ public class Student {
         this.cgpa = cgpa;
     }
 
-    
-/*************************** Override**********************************************/
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Student ID : " + this.studentID
                 + "\nStudent Name : " + this.firstName + " " + this.lastName
-                + "\nIC : " + this.ic; 
+                + "\nIC : " + this.ic;
     }
-    
-/******************************************************************************/
+
     public void setStudentID() {
         studentCount++;
         int year = Calendar.getInstance().get(Calendar.YEAR);
         String last2Digit = (Integer.toString(year)).substring(2);
-        String formatedID = last2Digit + String.format("%05d",studentCount);
+        String formatedID = last2Digit + String.format("%05d", studentCount);
 
         this.studentID = formatedID;
     }
-
 }

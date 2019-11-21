@@ -26,9 +26,7 @@ public class MyArrayList<T> implements MyList<T> {
                 this.resizeArray();
             }
             this.data[count++] = obj;
-            
         }
-
     }
 
     @Override
@@ -73,7 +71,6 @@ public class MyArrayList<T> implements MyList<T> {
     public int size() {
         return this.count;
     }
-//
 
     // require search for the object, currently just a simple compare
     // improvement can use, apply index on the array to fasten the search process
@@ -89,21 +86,21 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public int indexOf(T o) {
-       
+
         for (int i = 0; i < count; i++) {
             if (data[i].equals(o)) {
-                
+
                 return i;
             }
         }
         return -1;
     }
+
 //
 //    @Override
 //    public int lastIndexOf(T o) {
 //       
 //    }
-
     @Override
     public void add(int index, T o) {
 //       checkArraySize(index);
@@ -136,9 +133,10 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean replace(Integer givenPosition, T newEntry) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.data[givenPosition] = newEntry;
+        return true;
     }
-    
+
     @Override
     public T getLast() {
         return this.data[count - 1];
@@ -147,27 +145,21 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public String toString() {
         String str = "";
-        
+
         for (int i = 0; i < count; i++) {
             str += data[i];
             str += ", ";
         }
-        
+
         return str;
     }
-    
-    
 
-    /**
-     * ************************************************************************************
-     */
     // will return a new array with bigger size
     private void resizeArray() {
         this.data = Arrays.copyOf(data, count * count);
     }
 
     private void moveForward(T data[], int index) {
-
         for (int i = index; i < count; i++) {
             data[i] = data[i + 1];
             data[i + 1] = null;
@@ -177,5 +169,4 @@ public class MyArrayList<T> implements MyList<T> {
     private boolean isNull(T item) {
         return item == null;
     }
-
 }
