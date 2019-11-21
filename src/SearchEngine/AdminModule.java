@@ -4,6 +4,8 @@ import Constant.StringVar;
 import DataClass.Admin;
 import DataClass.Student;
 import DataClass.StudentRegistration;
+import DataStructureClass.MyArrayList;
+import DataStructureClass.MyList;
 import java.util.Date;
 
 public class AdminModule {
@@ -15,7 +17,7 @@ public class AdminModule {
     }
 
     public AdminModule(int index) {
-        
+
         this.index = index;
 
         Navigation();
@@ -27,8 +29,8 @@ public class AdminModule {
         System.out.println("");
         System.out.println("");
         System.out.println("------** Admin Page **-------");
-        System.out.println("Welcome, "+Main.db.adminList.get(index).getGender()+" "+Main.db.adminList.get(index).getName()+" ~");
-        System.out.println("1. Search Detail");
+        System.out.println("Welcome, " + Main.db.adminList.get(index).getGender() + " " + Main.db.adminList.get(index).getName() + " ~");
+        System.out.println("1. Search Student Detail");
         System.out.println("2. Register Student");
         System.out.println("3. Return");
         System.out.print("Your Selection ---> ");
@@ -53,15 +55,15 @@ public class AdminModule {
 
             switch (input) {
                 case "1":
-                    ShowSearchDetail();
+                    searchStudentDetailUI();
                     break;
-                    
+
                 case "2":
                     //RegisterStudent();
                     break;
-                    
+
             }
-            
+
         }
     }
 
@@ -96,7 +98,7 @@ public class AdminModule {
             }
         }
     }
-    
+
 //    public void RegisterStudent(){
 //        Main.banner();
 //        System.out.print("First Name: ");
@@ -135,5 +137,113 @@ public class AdminModule {
 //        Main.scan.nextLine();
 //        
 //    }
-    
+    /**
+     * ***********************************************************************
+     */
+    private void searchStudentDetailUI() {
+        String input;
+        while (true) {
+            while (true) {
+                Main.clearScreen();
+                System.out.println("Seach Student Details : ");
+                System.out.println("Please select your Criteria : ");
+                System.out.println("1. Search By student ID");
+                System.out.println("2. Search By Registration Status");
+                System.out.println("3. Return");
+                System.out.println("");
+                System.out.print("Your Selection ---> ");
+                input = Main.scan.nextLine();
+                if (Main.checkInputMenu(3, input)) {
+                    break;
+                }
+
+            }
+
+            if (input.equals("3")) {
+                break;
+            }
+
+            switch (input) {
+                case "1":
+                    ShowSearchDetail();
+                    break;
+                case "2":
+                    searchByRegistrationStatus();
+                    break;
+            }
+
+        }
+
+    }
+
+    private void searchByRegistrationStatus() {
+        String input;
+
+        while (true) {
+            //menu selection start
+            while (true) {
+                searchByRegistrationStatusUI();
+                input = Main.scan.nextLine();
+
+                // using check input method to validate only number will be entered
+                if (Main.checkInputMenu(4, input)) {
+                    break;
+                }
+            }// menu selection end
+
+            if (input.equals("4")) {
+                break;
+            }
+
+            switch (input) {
+                case "1":
+                    searchByPending();
+                    break;
+                case "2":
+                    //searchByRejected();
+                    break;
+                case "3":
+                    //searchByApproved();
+                    break;
+            }
+        }
+    }
+
+    private void searchByRegistrationStatusUI() {
+        Main.clearScreen();
+        System.out.println("Search Student Detail : ");
+        System.out.println("");
+        System.out.println("Please enter Registration Status that you want to search");
+        System.out.println("1. Pending");
+        System.out.println("2. Rejected");
+        System.out.println("3. Approved");
+        System.out.println("4. Return");
+        System.out.println("");
+        System.out.print("Your Selection ---> ");
+    }
+
+    private void searchByPending() {
+        MyList<StudentRegistration> registrationList = Main.db.registerList;
+        int length = registrationList.size();
+        int studentIndex = 1;
+
+        for (int i = 0; i < length; i++) {
+            if (registrationList.get(i).getStatus() == "pending") {
+                System.out.println("Student " + studentIndex + " :");
+                System.out.println("");
+                System.out.println(registrationList.get(i));
+                studentIndex++;
+            }
+        }
+
+        System.out.println("");
+        System.out.println("");
+        if (studentIndex == 1) {
+            System.out.println("Currently No Pending Student Registration!");
+        }
+        System.out.println("Press Enter To Continue...");
+        Main.scan.nextLine();
+
+    }
+
 }

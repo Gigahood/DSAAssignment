@@ -8,10 +8,8 @@ public class Main {
     public static Database db = new Database();
     
     public static void main(String[] args) {
-        //mainMenu();
-        //testingCI2222
+        mainMenu();
         //test();
-        System.out.println(db.registerList.get(1));
         
     }
     
