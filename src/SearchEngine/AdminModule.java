@@ -1,5 +1,6 @@
 package SearchEngine;
 
+import Constant.ConsoleColors;
 import Constant.StringVar;
 import DataClass.Admin;
 import DataClass.Student;
@@ -9,20 +10,20 @@ import DataStructureClass.MyList;
 import java.util.Date;
 
 public class AdminModule {
-
+    
     private int index;
     private String input;
-
+    
     public AdminModule() {
     }
-
+    
     public AdminModule(int index) {
-
+        
         this.index = index;
-
+        
         Navigation();
     }
-
+    
     public void Menu() {
         //Main.clearScreen();
         System.out.println("");
@@ -35,42 +36,42 @@ public class AdminModule {
         System.out.println("3. Return");
         System.out.print("Your Selection ---> ");
     }
-
+    
     public void Navigation() {
-
+        
         while (true) {
             while (true) {
                 Menu();
                 input = Main.scan.nextLine();
-
+                
                 if (Main.checkInputMenu(3, input)) {
                     break;
                 }
             }
-
+            
             if (input.equals("3")) {
                 Main.clearScreen();
                 break;
             }
-
+            
             switch (input) {
                 case "1":
                     searchStudentDetailUI();
                     break;
-
+                
                 case "2":
                     //RegisterStudent();
                     break;
-
+                
             }
-
+            
         }
     }
-
+    
     public void ShowSearchDetail() {
         System.out.println("Please enter the student ID:");
         String ID = Main.scan.nextLine();
-
+        
         for (int index = 0; index < Main.db.studentList.size(); index++) {
             if (ID.equals(Main.db.studentList.get(index).getStudentID())) {
                 System.out.println("-----------------------------------------------------");
@@ -94,7 +95,7 @@ public class AdminModule {
                     System.out.println("Please press again.");
                     break;
                 }
-
+                
             }
         }
     }
@@ -156,13 +157,13 @@ public class AdminModule {
                 if (Main.checkInputMenu(3, input)) {
                     break;
                 }
-
+                
             }
-
+            
             if (input.equals("3")) {
                 break;
             }
-
+            
             switch (input) {
                 case "1":
                     ShowSearchDetail();
@@ -171,14 +172,14 @@ public class AdminModule {
                     searchByRegistrationStatus();
                     break;
             }
-
+            
         }
-
+        
     }
-
+    
     private void searchByRegistrationStatus() {
         String input;
-
+        
         while (true) {
             //menu selection start
             while (true) {
@@ -194,7 +195,7 @@ public class AdminModule {
             if (input.equals("4")) {
                 break;
             }
-
+            
             switch (input) {
                 case "1":
                     searchByPending();
@@ -203,12 +204,12 @@ public class AdminModule {
                     //searchByRejected();
                     break;
                 case "3":
-                    //searchByApproved();
+                    searchByApproved();
                     break;
             }
         }
     }
-
+    
     private void searchByRegistrationStatusUI() {
         Main.clearScreen();
         System.out.println("Search Student Detail : ");
@@ -221,8 +222,60 @@ public class AdminModule {
         System.out.println("");
         System.out.print("Your Selection ---> ");
     }
-
+    
     private void searchByPending() {
+        while (true) {
+            Main.clearScreen();
+            System.out.println("***Searched Result with Pending Status***");
+            System.out.println("");
+            System.out.println("");
+            MyList<StudentRegistration> registrationList = Main.db.registerList;
+            int length = registrationList.size();
+            int studentIndex = 1;
+            String str = "";
+            str += String.format("%-10s %-30s %-15s\n", "No.", "Registration ID", "Status");
+            
+            for (int i = 0; i < length; i++) {
+                if (registrationList.get(i).getStatus() == "pending") {
+                    str += String.format("%-10s %-30s %-15s\n", studentIndex, registrationList.get(i).getRegistrationID(),
+                            (ConsoleColors.YELLOW + registrationList.get(i).getStatus() + ConsoleColors.RESET));
+                    studentIndex++;
+                }
+            }
+            System.out.println(str);
+            System.out.println("");
+            System.out.println("");
+            if (studentIndex == 1) {
+                System.out.println("Currently No Pending Student Registration!");
+                System.out.println("Press Enter To Continue...");
+                Main.scan.nextLine();
+            }
+            
+            System.out.println("Please enter registration ID to view Student Details");
+            System.out.println("Enter back to return");
+            System.out.println("");
+            System.out.print("Your selection --->");
+            String selection = Main.scan.nextLine();
+            
+            if (selection.equals("back")) {
+                break;
+            }
+            
+            StudentRegistration student = validateRegistrationID(selection);
+            
+            if (student != null) {
+                approveStudent(student);
+            } else {
+                System.out.println("Wrong input ");
+                System.out.println("Press enter to continue");
+                Main.scan.nextLine();
+            }
+        }
+    }
+    
+    private void searchByApproved() {
+        Main.clearScreen();
+        System.out.println("***Searched Result with Approved Status***");
         MyList<StudentRegistration> registrationList = Main.db.registerList;
         int length = registrationList.size();
         int studentIndex = 1;
@@ -230,9 +283,9 @@ public class AdminModule {
         str += String.format("%-10s %-30s %-15s\n", "No.", "Registration ID", "Status");
         
         for (int i = 0; i < length; i++) {
-            if (registrationList.get(i).getStatus() == "pending") {
-                str += String.format("%-10s %-30s %-15s\n", studentIndex, registrationList.get(i).getRegistrationID() 
-                        , registrationList.get(i).getStatus());
+            if ("approved".equals(registrationList.get(i).getStatus())) {
+                str += String.format("%-10s %-30s %-15s\n", studentIndex, registrationList.get(i).getRegistrationID(),
+                        (ConsoleColors.CYAN + registrationList.get(i).getStatus() + ConsoleColors.RESET));
                 studentIndex++;
             }
         }
@@ -240,11 +293,61 @@ public class AdminModule {
         System.out.println("");
         System.out.println("");
         if (studentIndex == 1) {
-            System.out.println("Currently No Pending Student Registration!");
+            System.out.println("Currently No Approved Student Registration!");
         }
         System.out.println("Press Enter To Continue...");
         Main.scan.nextLine();
-
     }
+    
+    private StudentRegistration validateRegistrationID(String registrationID) {
+        int length = Main.db.registerList.size();
+        
+        for (int i = 0; i < length; i++) {
+            if (Main.db.registerList.get(i).getRegistrationID().equals(registrationID)) {
+                return Main.db.registerList.get(i);
+            }
+        }
+        
+        return null;
+    }
+    
+    private void approveStudent(StudentRegistration student) {
+        String input2;
+        while (true) {
+            // menu selection start
+            while (true) {
+                Main.clearScreen();
+                System.out.println(student);
+                System.out.println("");
+                System.out.println("");
+                System.out.println("Please select an action : ");
+                System.out.println("1. Approved");
+                System.out.println("2. Reject");
+                System.out.println("3. Return");
+                System.out.println("");
+                System.out.print("Your Selection ---> ");
+                input2 = Main.scan.nextLine();
+                
+                if (Main.checkInputMenu(3, input2)) {
+                    break;
+                }
+            } // menu selection end
 
+            // if 4 end program else go into the category
+            if (input2.equals("3")) {
+                break;
+            }
+            
+            switch (input2) {
+                case "1":
+                    student.setStatus("approved");
+                    break;
+                case "2":
+                    student.setStatus("rejected");
+                    break;
+            }
+            break;
+        }
+    }
+    
 }
