@@ -9,15 +9,15 @@ public class Main {
     
     public static void main(String[] args) {
         //mainMenu();
-        System.out.println(db.studentList);
-//        AdminModule am = new AdminModule();
-//        am.Navigation();
+        //testingCI2222
+        //test();
+        System.out.println(db.registerList.get(1));
         
     }
     
     private static void test() {
         MyList<String> a = new MyArrayList<String>();
-        
+
         a.add("1");
         a.add("2");
         a.add("3");
@@ -30,7 +30,7 @@ public class Main {
     
     public static void mainMenu() {
         String input;
-
+        
         while (true) {
             // menu selection start
             while (true) {

@@ -122,5 +122,7 @@ public interface MyList<T> {
         Postcondition : 
         Return        :
     */
+    T getLast();
+    
     //int lastIndexOf(Object o);
 }

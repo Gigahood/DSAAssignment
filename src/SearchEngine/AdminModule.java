@@ -2,6 +2,9 @@ package SearchEngine;
 
 import Constant.StringVar;
 import DataClass.Admin;
+import DataClass.Student;
+import DataClass.StudentRegistration;
+import java.util.Date;
 
 public class AdminModule {
 
@@ -12,19 +15,22 @@ public class AdminModule {
     public AdminModule() {
     }
 
-    public AdminModule(Admin admin, int index) {
-        this.admin = admin;
+    public AdminModule(int index) {
+        
         this.index = index;
 
         Navigation();
     }
 
     public void Menu() {
-        Main.clearScreen();
+        //Main.clearScreen();
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
         System.out.println("------** Admin Page **-------");
-        System.out.println("Welcome, " + Main.db.adminList.get(index).getGender() + " " + Main.db.adminList.get(index).getName() + " ~");
-        System.out.println("1. Search Student Detail By Student ID");
-        System.out.println("2. Search Student Detail By Registration Status");
+        System.out.println("Welcome, "+Main.db.adminList.get(index).getGender()+" "+Main.db.adminList.get(index).getName()+" ~");
+        System.out.println("1. Search Detail");
+        System.out.println("2. Register Student");
         System.out.println("3. Return");
         System.out.print("Your Selection ---> ");
     }
@@ -50,10 +56,13 @@ public class AdminModule {
                 case "1":
                     ShowSearchDetail();
                     break;
+                    
                 case "2":
-                    SearchByRegistrationStatus();
+                    //RegisterStudent();
                     break;
+                    
             }
+            
         }
     }
 
@@ -88,22 +97,44 @@ public class AdminModule {
             }
         }
     }
-
-    private void SearchByRegistrationStatus() {
-        while (true) {
-            Main.clearScreen();
-            System.out.println("Please select status : ");
-            System.out.println("1. Pending");
-            System.out.println("2. Return");
-            System.out.println("");
-            System.out.print("Your Selection ---> ");
-            String input = Main.scan.nextLine();
-            System.out.println("");
-            if (Main.checkInputMenu(3, input)) {
-                System.out.println("Invalid Menu Choice!!");
-                break;
-            }
-        }
-
-    }
+    
+//    public void RegisterStudent(){
+//        Main.banner();
+//        System.out.print("First Name: ");
+//        String firstName=Main.scan.nextLine();
+//        System.out.print("Last Name: ");
+//        String lastName=Main.scan.nextLine();
+//        
+//        System.out.print("Number of Identity Card: ");
+//        String ic=Main.scan.nextLine();
+//        
+//        System.out.print("Highest level of education: ");
+//        String education=Main.scan.nextLine();
+//        
+//        System.out.println(Student.getCount());
+//                System.out.println(StudentRegistration.getCount());
+//        
+//        Student newStudent = new Student(firstName, lastName, ic,education);
+//        StudentRegistration newRegister = new StudentRegistration(new Date(), "approved", newStudent);
+//        Main.db.registerList.add(newRegister);
+//                
+//        System.out.println(Student.getCount());
+//                System.out.println(StudentRegistration.getCount());
+//        
+//        Main.db.studentList.add(newStudent);
+//        
+//        System.out.println(Student.getCount());
+//                System.out.println(StudentRegistration.getCount());
+//        
+//        System.out.println("");
+//        System.out.println("");
+//        System.out.println(Main.db.studentList.size());
+//        System.out.println(Main.db.studentList.get(1));
+//        System.out.println(Student.getCount());
+//        System.out.println(StudentRegistration.getCount());
+//        
+//        Main.scan.nextLine();
+//        
+//    }
+    
 }
