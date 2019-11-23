@@ -2,12 +2,7 @@ package SearchEngine;
 
 import Constant.ConsoleColors;
 import DataStructureClass.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -23,27 +18,22 @@ public class Main {
     }
 
     private static void test() {
-//        Calendar date = Calendar.getInstance();
-//        System.out.println(date.getTime());
-//        Calendar date2 = Calendar.getInstance();
-//        date2.set(2019,10, 22);
-//        System.out.println(date2.getTime());
-//        
-//        System.out.println(date.getTimeInMillis());
-//        System.out.println(date2.getTimeInMillis());
-//        
-//        long dif = date.getTimeInMillis() - date2.getTimeInMillis();
-//        
-//        long days = (dif / (60*60*24*1000));
-//        long days2 = TimeUnit.MILLISECONDS.toDays(dif);
-//        System.out.println(dif);
-//        System.out.println(days2);
-
-         Date d = new Date();
-         SimpleDateFormat ft = 
-      new SimpleDateFormat ("dd.MM.yyyy");
-
-      System.out.println("Current Date: " + ft.format(d));
+        MyList<Integer> a = new MyArrayList<>();
+        
+        for (int i = 10; i < 30; i++) {
+            a.add(i);
+        }
+        
+        //System.out.println(a.contains(30));
+        //System.out.println(a.get(30));
+        //System.out.println(a.remove(0));
+        //System.out.println(a.get(0));
+        //System.out.println(a.indexOf(50));
+        System.out.println(a);
+        System.out.println(a.replace(1000, 100));
+        System.out.println(a);
+        
+        
         
     }
 
