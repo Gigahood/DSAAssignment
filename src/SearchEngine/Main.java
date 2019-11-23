@@ -1,5 +1,6 @@
 package SearchEngine;
 
+import Constant.ConsoleColors;
 import DataStructureClass.*;
 import java.util.Scanner;
 
