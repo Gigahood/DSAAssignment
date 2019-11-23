@@ -18,23 +18,7 @@ public class Main {
     }
 
     private static void test() {
-        MyList<Integer> a = new MyArrayList<>();
-        
-        for (int i = 10; i < 30; i++) {
-            a.add(i);
-        }
-        
-        //System.out.println(a.contains(30));
-        //System.out.println(a.get(30));
-        //System.out.println(a.remove(0));
-        //System.out.println(a.get(0));
-        //System.out.println(a.indexOf(50));
-        System.out.println(a);
-        System.out.println(a.replace(1000, 100));
-        System.out.println(a);
-        
-        
-        
+  
     }
 
     public static void mainMenu() {
