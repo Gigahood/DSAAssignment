@@ -247,4 +247,65 @@ public class AdminModule {
 
     }
 
+    private StudentRegistration validateRegistrationID(String registrationID) {
+        int length = Main.db.registerList.size();
+
+        for (int i = 0; i < length; i++) {
+            if (Main.db.registerList.get(i).getRegistrationID().equals(registrationID)) {
+                return Main.db.registerList.get(i);
+            }
+        }
+
+        return null;
+    }
+
+    private void approveStudent(StudentRegistration student) {
+        String input2;
+        while (true) {
+            // menu selection start
+            while (true) {
+                Main.clearScreen();
+                System.out.println(student);
+                System.out.println("");
+                System.out.println("");
+                System.out.println("Please select an action : ");
+                System.out.println("1. Approved");
+                System.out.println("2. Reject");
+                System.out.println("3. Return");
+                System.out.println("");
+                System.out.print("Your Selection ---> ");
+                input2 = Main.scan.nextLine();
+
+                if (Main.checkInputMenu(3, input2)) {
+                    break;
+                }
+            } // menu selection end
+
+            // if 4 end program else go into the category
+            if (input2.equals("3")) {
+                break;
+            }
+
+            switch (input2) {
+                case "1":
+                    student.setStatus("approved");
+                    break;
+                case "2":
+                    student.setStatus("rejected");
+                    break;
+            }
+            break;
+        }
+    }
+
+    private long getDayDifference(long time) {
+        // something new here
+        long days;
+        long todayTime = new Date().getTime();
+
+        days = (todayTime - time) / (1000 * 60 * 60 * 24);
+
+        return days;
+    }
+
 }
