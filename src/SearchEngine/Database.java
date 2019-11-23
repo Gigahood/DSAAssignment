@@ -17,17 +17,17 @@ public class Database {
 
     private void addStudentData() {
         Student s1 = new Student("Kuek", "Yong Boon", "940526105481", "Foundation");
-        StudentRegistration r1 = new StudentRegistration(new Date(), "approved", s1);
+        StudentRegistration r1 = new StudentRegistration(new Date(), "approved", s1, null);
         registerList.add(r1);
         studentList.add(s1);
         Student s2 = new Student("Kuek", "Yong Tat", "940526105482", "Foundation");
-        StudentRegistration r2 = new StudentRegistration(new Date(), "pending", s2);
+        StudentRegistration r2 = new StudentRegistration(new Date(), "pending", s2, registerList.getLast());
         registerList.add(r2);
         Student s3 = new Student("Ong", "Yong Tat", "940526105482", "Foundation");
-        StudentRegistration r3 = new StudentRegistration(new Date(), "rejected", s3);
+        StudentRegistration r3 = new StudentRegistration(new Date(), "rejected", s3, registerList.getLast());
         registerList.add(r3);
         Student s4 = new Student("Kuek", "Yong Tat", "940526105482", "Foundation");
-        StudentRegistration r4 = new StudentRegistration(new Date(), "pending", s4);
+        StudentRegistration r4 = new StudentRegistration(new Date(), "pending", s4, registerList.getLast());
         registerList.add(r4);
         Student s5 = new Student("Wong", "Chia Zhen", "961226025845", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
         StudentRegistration r5 = new StudentRegistration(new Date(), "pending", s5, registerList.getLast());
