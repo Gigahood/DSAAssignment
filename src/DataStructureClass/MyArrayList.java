@@ -30,6 +30,15 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
+    public boolean add(int index, T o) {
+//       checkArraySize(index);
+//       moveBackward((count - 1), index, data);
+//       data[index] = o;
+//       count++;
+        return false;
+    }
+
+    @Override
     public boolean contains(T o) {
         for (int i = 0; i < count; i++) {
             if (o.equals(data[i])) {
@@ -41,6 +50,8 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public T get(int entry) {
+        // check if the entry is within the size
+        // throw exception if out of bound
         checkArraySize(entry);
         return this.data[entry];
     }
@@ -52,19 +63,21 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void removeAll() {
-        data = null;
+        this.data = (T[]) new Object[FIXED_SIZE];
         count = 0;
     }
 
     @Override
-    public void remove(int index) {
-        if (index < count) {
-            data[index] = null;
-            moveForward(data, index);
-            count -= 1;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+    public boolean remove(int index) {
+        // check if the entry is within the size
+        // throw exception if out of bound
+        checkArraySize(index);
+
+        data[index] = null;
+        moveForward(data, index);
+        count -= 1;
+        return true;
+
     }
 
     @Override
@@ -75,13 +88,16 @@ public class MyArrayList<T> implements MyList<T> {
     // require search for the object, currently just a simple compare
     // improvement can use, apply index on the array to fasten the search process
     @Override
-    public void remove(T item) {
+    public boolean remove(T item) {
         // check item is not null, list is not empty, and this list contain this item
         if (!this.isNull(item) && !this.isEmpty() && this.contains(item)) {
             int index = this.indexOf(item);
             moveForward(data, index);
             count--;
+            return true;
         }
+
+        return false;
     }
 
     @Override
@@ -101,14 +117,6 @@ public class MyArrayList<T> implements MyList<T> {
 //    public int lastIndexOf(T o) {
 //       
 //    }
-    @Override
-    public void add(int index, T o) {
-//       checkArraySize(index);
-//       moveBackward((count - 1), index, data);
-//       data[index] = o;
-//       count++;
-    }
-
 //    private void moveBackward(int count, int index, T data[]) {   
 //        int next;
 //        int previous;
@@ -120,19 +128,22 @@ public class MyArrayList<T> implements MyList<T> {
 //            System.out.println(count + ""+next + " " + previous);
 //        }
 //    }
-    private void checkArraySize(int size) {
+    private boolean checkArraySize(int size) {
         if (size > count) {
             throw new ArrayIndexOutOfBoundsException();
         }
+
+        return true;
     }
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.count >= data.length;
     }
 
     @Override
     public boolean replace(Integer givenPosition, T newEntry) {
+        checkArraySize(givenPosition);
         this.data[givenPosition] = newEntry;
         return true;
     }

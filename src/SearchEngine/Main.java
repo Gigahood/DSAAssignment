@@ -1,28 +1,34 @@
 package SearchEngine;
 
+import Constant.ConsoleColors;
 import DataStructureClass.*;
 import java.util.Scanner;
 
 public class Main {
-
     public static Scanner scan = new Scanner(System.in);
     public static Database db = new Database();
-
-
-
+    
     public static void main(String[] args) {
         mainMenu();
         //test();
 
     }
 
+//    private static void test() {
+//  
+//    }
+    
     private static void test() {
-  
+        String str = "";
+        str += String.format("%-20s %-10s", "StudentID", "student Name\n");
+        str += String.format("123" , "213123213\n");
+        str += String.format("%-20s %-10s", "123123231231231" , "213123213");
+        System.out.println(str);
     }
-
+    
     public static void mainMenu() {
         String input;
-
+        
         while (true) {
             // menu selection start
             while (true) {
@@ -34,7 +40,7 @@ public class Main {
                     break;
                 }
             } // menu selection end
-
+            
             // if 4 end program else go into the category
             if (input.equals("4")) {
                 break;
@@ -53,7 +59,7 @@ public class Main {
             }
         }
     }
-
+    
     private static void mainMenuUI() {
         System.out.println("");
         System.out.println("Please enter your selection : ");
@@ -64,12 +70,12 @@ public class Main {
         System.out.println("");
         System.out.print("Your Selection ---> ");
     }
-
+    
     public static boolean checkInputMenu(int limit, String input) {
         if (input.isEmpty()) {
             return false;
         }
-
+        
         try {
             int inputInt = Integer.parseInt(input);
             return ((inputInt >= 1 && inputInt <= limit));
@@ -77,7 +83,7 @@ public class Main {
             return false;
         }
     }
-
+    
 //    public static void MenuOption() {
 //        Scanner scan = new Scanner(System.in);
 //
@@ -97,6 +103,7 @@ public class Main {
 //                break;
 //        }
 //    }
+
     public static void banner() {
         System.out.println("-----------------------");
         System.out.println("   Welcome To TARUC    ");
