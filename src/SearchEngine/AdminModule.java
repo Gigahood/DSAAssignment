@@ -103,9 +103,14 @@ public class AdminModule {
 
     public boolean validateEmptyInput(String input) {
         if (input.isEmpty()){
-            System.out.println(ConsoleColors.RED + "Cannot be empty field!" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD + "CANNOT BE EMPTY FIELD!" + ConsoleColors.RESET);
             return false;
         }
+        else if(!input.matches("^(?=.*[A-Z])(?=.{3,}).+$"+"[a-z\\s]*$")){    
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter completed data." + ConsoleColors.RESET);
+            return false;
+        }
+        
         else 
             return true;
         
@@ -113,17 +118,19 @@ public class AdminModule {
     
     public boolean integerVaidation(String input) {
         if (input.isEmpty()){
-            System.out.println(ConsoleColors.RED + "Cannot be empty field!" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
             return false;
         }
-        try {
-                int x = Integer.parseInt(input); 
-                return true;
-            }
-            catch(NumberFormatException e) {
-                System.out.println(ConsoleColors.RED+"Input is invalid!"+ConsoleColors.RESET); 
+        else if (input.matches("^(?=.*\\d)")){
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number." + ConsoleColors.RESET); 
                 return false;
-            }
+        }
+        else if (input.length()!=12){
+                System.out.println(ConsoleColors.BLUE_BOLD + "Please enter completed value!" + ConsoleColors.RESET);
+                return false;
+        }
+        else 
+            return true;
     }
     
     
@@ -151,13 +158,15 @@ public class AdminModule {
             if (validateEmptyInput(lastName)){
                 break;
             }
+               
         }
         while (true){
             System.out.print("Number of Identity Card (Number only): ");
             ic = scan.nextLine();
             if (integerVaidation(ic)){
                 break;
-            }             
+            }   
+            
         }
         
         while (true){
@@ -169,7 +178,7 @@ public class AdminModule {
             }
         }
         
-        System.out.println(ConsoleColors.GREEN + "1. Confirm Register     "+ConsoleColors.RESET + ConsoleColors.RED +"     2. Cancel Register"+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "1. Confirm Register     "+ConsoleColors.RESET + ConsoleColors.RED +"     2. Cancel Register"+ConsoleColors.RESET);
         System.out.print("Your choice --> ");
         String confirmation = scan.nextLine();
         Main.checkInputMenu(2, confirmation);
@@ -185,9 +194,9 @@ public class AdminModule {
                 
                 System.out.println("");
                 System.out.println("");
-                System.out.println(ConsoleColors.CYAN+"** You are succeful registered **"+ConsoleColors.RESET);
-                System.out.println("You Student ID is "+newStudent.getStudentID());
-                System.out.println("Default password is "+newStudent.getPassword());
+                System.out.println(ConsoleColors.CYAN + "** You are succeful registered **" + ConsoleColors.RESET);
+                System.out.println("You Student ID is " + ConsoleColors.CYAN + newStudent.getStudentID()+ ConsoleColors.RESET);
+                System.out.println("Default password is " + ConsoleColors.CYAN + newStudent.getPassword() + ConsoleColors.RESET);
                 
                 System.out.println("Press enter go back to menu...");
                 String enter = scan.nextLine();
