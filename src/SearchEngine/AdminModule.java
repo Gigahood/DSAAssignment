@@ -105,8 +105,12 @@ public class AdminModule {
             System.out.println(ConsoleColors.RED_BOLD + "CANNOT BE EMPTY FIELD!" + ConsoleColors.RESET);
             return false;
         }
-        else if(!input.matches("^(?=.*[A-Z])(?=.{3,}).+$"+"[a-z\\s]*$")){    
-            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter completed data." + ConsoleColors.RESET);
+        else if(!input.matches("[A-Za-z\\s]*$")){
+            System.out.println(ConsoleColors.PURPLE_BOLD + "INVALID INPUT! Only Accepted Character." + ConsoleColors.RESET);
+            return false;
+        }
+        else if(!input.matches("^(?=.*[A-Z])(?=.{2,}).+$")){    
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter at least one upcase character." + ConsoleColors.RESET);
             return false;
         }
         
@@ -126,13 +130,16 @@ public class AdminModule {
         }
         else if (input.length()!=12){
                 System.out.println(ConsoleColors.BLUE_BOLD + "Please enter completed value!" + ConsoleColors.RESET);
-                System.out.println("123");
                 return false;
         }
         else 
             return true;
     }
     
+    public static String centerString (int width, String s) {
+        
+        return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
+    }
     
     public void RegisterStudent(){
         
@@ -142,9 +149,9 @@ public class AdminModule {
         String ic;
         String education;
         Main.banner();
-        
+        String formating = "%1$-20s:";
         while (true){
-            System.out.print("First Name: ");
+            System.out.format(formating,"First Name");
             firstName = scan.nextLine();
             
             if (validateEmptyInput(firstName)){
@@ -152,7 +159,7 @@ public class AdminModule {
             }
         }    
         while (true){
-            System.out.print("Last Name: ");
+            System.out.format(formating,"Last Name");
             lastName = scan.nextLine();
             
             if (validateEmptyInput(lastName)){
@@ -161,7 +168,7 @@ public class AdminModule {
                
         }
         while (true){
-            System.out.print("Number of Identity Card (Number only): ");
+            System.out.format(formating,"NIC (Number only)");
             ic = scan.nextLine();
             if (integerVaidation(ic)){
                 break;
@@ -170,7 +177,7 @@ public class AdminModule {
         }
         
         while (true){
-            System.out.print("Highest level of education: ");
+            System.out.format(formating,"Education Background");
             education = scan.nextLine();
             
             if (validateEmptyInput(education)){
@@ -178,7 +185,7 @@ public class AdminModule {
             }
         }
         
-        System.out.println(ConsoleColors.GREEN_BOLD + "1. Confirm Register     "+ConsoleColors.RESET + ConsoleColors.RED +"     2. Cancel Register"+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "1. Confirm Register     "+ConsoleColors.RESET + ConsoleColors.PURPLE +"     2. Cancel Register"+ConsoleColors.RESET);
         System.out.print("Your choice --> ");
         String confirmation = scan.nextLine();
         Main.checkInputMenu(2, confirmation);
@@ -194,24 +201,27 @@ public class AdminModule {
                 
                 System.out.println("");
                 System.out.println("");
-                System.out.println(ConsoleColors.CYAN + "** You are succeful registered **" + ConsoleColors.RESET);
-                System.out.println("You Student ID is " + ConsoleColors.CYAN + newStudent.getStudentID()+ ConsoleColors.RESET);
-                System.out.println("Default password is " + ConsoleColors.CYAN + newStudent.getPassword() + ConsoleColors.RESET);
                 
+                
+                String format = "*%1$-50s*\n";
+                String title = centerString(42,"*** You are succeful registered ***");
+                System.out.println(ConsoleColors.CYAN + title + ConsoleColors.RESET);
+                System.out.format(format, "Your student ID is " + ConsoleColors.CYAN +newStudent.getStudentID() + ConsoleColors.RESET );
+                System.out.format(format, "Password (Your IC No.) is " + ConsoleColors.CYAN + newStudent.getPassword() + ConsoleColors.RESET );
+                
+                 
+                
+                System.out.println("");
                 System.out.println("Press enter go back to menu...");
                 String enter = scan.nextLine();
                 break;
             
             case "2":
-                System.out.println("Already cancel registration.");
+                System.out.println(ConsoleColors.PURPLE_BOLD + "~~ Already cancel registration. ~~" + ConsoleColors.RESET);
                 Navigation();
                 
         }
  
-//        System.out.println(Student.getCount());
-//        System.out.println(StudentRegistration.getCount());
-        
-
     }
     
     /**
