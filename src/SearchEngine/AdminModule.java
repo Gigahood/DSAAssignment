@@ -223,10 +223,6 @@ public class AdminModule {
                 
         }
  
-//        System.out.println(Student.getCount());
-//        System.out.println(StudentRegistration.getCount());
-        
-
     }
     
     /**
