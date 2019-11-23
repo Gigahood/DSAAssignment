@@ -100,7 +100,7 @@ public class AdminModule {
         }
     }
 
-public boolean validateEmptyInput(String input) {
+    public boolean validateEmptyInput(String input) {
         if (input.isEmpty()){
             System.out.println("Cannot be empty field!");
             return false;
@@ -176,11 +176,14 @@ public boolean validateEmptyInput(String input) {
         
         switch (confirmation) {
             case "1":
+
                 Student newStudent = new Student(firstName, lastName, ic, education);
                 Main.db.studentList.add(newStudent);
                 StudentRegistration newRegistration = new StudentRegistration(new Date(), "approved", newStudent, Main.db.registerList.getLast());
                 Main.db.registerList.add(newRegistration);
                 
+                System.out.println("");
+                System.out.println("");
                 System.out.println("** You are succeful registered **");
                 System.out.println("You Student ID is "+newStudent.getStudentID());
                 System.out.println("Default password is "+newStudent.getPassword());
