@@ -363,6 +363,7 @@ public class AdminModule {
     }
 
     private long getDayDifference(long time) {
+        // something new here
         long days;
         long todayTime = new Date().getTime();
 
