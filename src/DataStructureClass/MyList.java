@@ -53,7 +53,7 @@ public interface MyList<T> {
     // this will to get the item from the list
     /*
         Description   : adaasd
-        Precondition  : 
+        Precondition  : 123
         Postcondition : 
         Return        :
     */
