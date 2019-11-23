@@ -30,7 +30,7 @@ public class Database {
         StudentRegistration r4 = new StudentRegistration(new Date(), "pending", s4);
         registerList.add(r4);
         Student s5 = new Student("Wong", "Chia Zhen", "961226025845", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r5 = new StudentRegistration(new Date(), "pending", s5);
+        StudentRegistration r5 = new StudentRegistration(new Date(), "pending", s5, registerList.getLast());
         registerList.add(r5);
     }
 
