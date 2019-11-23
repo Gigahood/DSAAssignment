@@ -7,9 +7,10 @@ import DataClass.StudentRegistration;
 import DataStructureClass.MyArrayList;
 import DataStructureClass.MyList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class AdminModule {
-
+    public static Scanner scan = new Scanner(System.in);
     private int index;
     private String input;
 
@@ -99,44 +100,107 @@ public class AdminModule {
         }
     }
 
-//    public void RegisterStudent(){
-//        Main.banner();
-//        System.out.print("First Name: ");
-//        String firstName=Main.scan.nextLine();
-//        System.out.print("Last Name: ");
-//        String lastName=Main.scan.nextLine();
-//        
-//        System.out.print("Number of Identity Card: ");
-//        String ic=Main.scan.nextLine();
-//        
-//        System.out.print("Highest level of education: ");
-//        String education=Main.scan.nextLine();
-//        
-//        System.out.println(Student.getCount());
-//                System.out.println(StudentRegistration.getCount());
-//        
-//        Student newStudent = new Student(firstName, lastName, ic,education);
-//        StudentRegistration newRegister = new StudentRegistration(new Date(), "approved", newStudent);
-//        Main.db.registerList.add(newRegister);
-//                
-//        System.out.println(Student.getCount());
-//                System.out.println(StudentRegistration.getCount());
-//        
-//        Main.db.studentList.add(newStudent);
-//        
-//        System.out.println(Student.getCount());
-//                System.out.println(StudentRegistration.getCount());
-//        
-//        System.out.println("");
-//        System.out.println("");
-//        System.out.println(Main.db.studentList.size());
-//        System.out.println(Main.db.studentList.get(1));
+public boolean validateEmptyInput(String input) {
+        if (input.isEmpty()){
+            System.out.println("Cannot be empty field!");
+            return false;
+        }
+        else 
+            return true;
+        
+    }
+    
+    public boolean integerVaidation(String input) {
+        if (input.isEmpty()){
+            System.out.println("Cannot be empty field!");
+            return false;
+        }
+        try {
+                int x = Integer.parseInt(input); 
+                return true;
+            }
+            catch(NumberFormatException e) {
+                System.out.println("Input is invalid!"); 
+                return false;
+            }
+    }
+    
+    
+    public void RegisterStudent(){
+        
+        //boolean result = true;
+        String firstName;
+        String lastName; 
+        String ic;
+        String education;
+        Main.banner();
+        
+        while (true){
+            System.out.print("First Name: ");
+            firstName = scan.nextLine();
+            
+            if (validateEmptyInput(firstName)){
+                break;
+            }
+        }    
+        while (true){
+            System.out.print("Last Name: ");
+            lastName = scan.nextLine();
+            
+            if (validateEmptyInput(lastName)){
+                break;
+            }
+        }
+        while (true){
+            System.out.print("Number of Identity Card (Number only): ");
+            ic = scan.nextLine();
+            if (integerVaidation(ic)){
+                break;
+            }             
+        }
+        
+        while (true){
+            System.out.print("Highest level of education: ");
+            education = scan.nextLine();
+            
+            if (validateEmptyInput(education)){
+                break;
+            }
+        }
+        
+        System.out.println("1. Confirm Register     " + "     2. Cancel Register");
+        System.out.print("Your choice --> ");
+        String confirmation = scan.nextLine();
+        Main.checkInputMenu(2, confirmation);
+       
+        
+        switch (confirmation) {
+            case "1":
+                Student newStudent = new Student(firstName, lastName, ic, education);
+                Main.db.studentList.add(newStudent);
+                StudentRegistration newRegistration = new StudentRegistration(new Date(), "approved", newStudent, Main.db.registerList.getLast());
+                Main.db.registerList.add(newRegistration);
+                
+                System.out.println("** You are succeful registered **");
+                System.out.println("You Student ID is "+newStudent.getStudentID());
+                System.out.println("Default password is "+newStudent.getPassword());
+                
+                System.out.println("Press enter go back to menu...");
+                String enter = scan.nextLine();
+                break;
+            
+            case "2":
+                System.out.println("Already cancel registration.");
+                Navigation();
+                
+        }
+ 
 //        System.out.println(Student.getCount());
 //        System.out.println(StudentRegistration.getCount());
-//        
-//        Main.scan.nextLine();
-//        
-//    }
+        
+
+    }
+    
     /**
      * ***********************************************************************
      */
