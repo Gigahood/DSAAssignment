@@ -5,6 +5,7 @@ import java.util.Calendar;
 public class Student {
     // count represent total number of student in current semester
     private static int studentCount = 0;
+    private static String year = "0";
     private String studentID;
     private String firstName;
     private String lastName;
@@ -113,12 +114,26 @@ public class Student {
     
 /******************************************************************************/
     public void setStudentID() {
+        calculateStudentCount();
         studentCount++;
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        String last2Digit = (Integer.toString(year)).substring(2);
-        String formatedID = last2Digit + String.format("%05d",studentCount);
+        //String year = getYearLastTwoDigit();
+        String formatedID = this.year + String.format("%05d",studentCount);
 
         this.studentID = formatedID;
+    }
+    
+    private void calculateStudentCount() {
+        if (!Student.year.equals(getYearLastTwoDigit())) {
+            studentCount = 0;
+            Student.year = getYearLastTwoDigit();
+        }
+    }
+    
+    private String getYearLastTwoDigit() {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String lastTwoYear = (Integer.toString(year)).substring(2);
+        
+        return lastTwoYear;
     }
 
 }
