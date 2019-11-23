@@ -7,7 +7,6 @@ public class StudentRegistration {
 
     // count is for the total number of student registered 
     private static long registrationCount = 0;
-    private static String month = "0";
     private String registrationID;
     private Date registrationDate;
     private String registrationStatus;
@@ -17,12 +16,13 @@ public class StudentRegistration {
     public StudentRegistration() {
     }
 
-    public StudentRegistration(Date registrationDate, String registrationStatus, Student student) {
+    public StudentRegistration(Date registrationDate, String registrationStatus, Student student,
+            StudentRegistration studentRegistration) {
         this.registrationDate = registrationDate;
         this.student = student;
         this.registrationStatus = registrationStatus;
         this.password = this.student.getIc();
-        setRegistrationID();
+        setRegistrationID(studentRegistration);
         checkRegistrationStatus();
     }
 
@@ -85,14 +85,14 @@ public class StudentRegistration {
     /**
      * ***************************************************************************
      */
-    private void setRegistrationID( ) {
+    private void setRegistrationID(StudentRegistration studentRegistration) {
         // reset registrationCount if the semester is not the same
-        calculateRegistrationCount();
+        calculateRegistrationCount(studentRegistration);
         registrationCount++;
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        //String month = getSemester();
+        String month = getSemester();
         String last2Digit = (Integer.toString(year)).substring(2);
-        String formatedID = last2Digit + this.month + String.format("%05d", registrationCount);
+        String formatedID = last2Digit + month + String.format("%05d", registrationCount);
 
         this.registrationID = formatedID;
     }
@@ -130,13 +130,15 @@ public class StudentRegistration {
         return monthStr;
     }
 
-    private void calculateRegistrationCount() {
-        if (!month.equals(getSemester())) {
-            registrationCount = 0;
-            month = getSemester();
-        } else {
-            
+    private void calculateRegistrationCount(StudentRegistration studentRegistration) {
+        if (studentRegistration != null) {
+            String previousStudent = studentRegistration.getRegistrationID().substring(2, 4);
+                    
+            if (!previousStudent.equals(getSemester())) {
+                registrationCount = 0;
+            }
         }
+
     }
 
 }
