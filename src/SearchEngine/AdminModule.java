@@ -127,6 +127,7 @@ public class AdminModule {
         }
         else if (input.length()!=12){
                 System.out.println(ConsoleColors.BLUE_BOLD + "Please enter completed value!" + ConsoleColors.RESET);
+                System.out.println("123");
                 return false;
         }
         else 
