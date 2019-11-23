@@ -6,12 +6,13 @@ import DataClass.StudentRegistration;
 import DataStructureClass.MyList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class AdminModule {
-
+    public static Scanner scan = new Scanner(System.in);
     private int index;
     private String input;
-
+ 
     public AdminModule() {
     }
 
@@ -58,7 +59,7 @@ public class AdminModule {
                     break;
 
                 case "2":
-                    //RegisterStudent();
+                    RegisterStudent();
                     break;
 
             }
@@ -98,44 +99,120 @@ public class AdminModule {
         }
     }
 
-//    public void RegisterStudent(){
-//        Main.banner();
-//        System.out.print("First Name: ");
-//        String firstName=Main.scan.nextLine();
-//        System.out.print("Last Name: ");
-//        String lastName=Main.scan.nextLine();
-//        
-//        System.out.print("Number of Identity Card: ");
-//        String ic=Main.scan.nextLine();
-//        
-//        System.out.print("Highest level of education: ");
-//        String education=Main.scan.nextLine();
-//        
-//        System.out.println(Student.getCount());
-//                System.out.println(StudentRegistration.getCount());
-//        
-//        Student newStudent = new Student(firstName, lastName, ic,education);
-//        StudentRegistration newRegister = new StudentRegistration(new Date(), "approved", newStudent);
-//        Main.db.registerList.add(newRegister);
-//                
-//        System.out.println(Student.getCount());
-//                System.out.println(StudentRegistration.getCount());
-//        
-//        Main.db.studentList.add(newStudent);
-//        
-//        System.out.println(Student.getCount());
-//                System.out.println(StudentRegistration.getCount());
-//        
-//        System.out.println("");
-//        System.out.println("");
-//        System.out.println(Main.db.studentList.size());
-//        System.out.println(Main.db.studentList.get(1));
+    public boolean validateEmptyInput(String input) {
+        if (input.isEmpty()){
+            System.out.println(ConsoleColors.RED_BOLD + "CANNOT BE EMPTY FIELD!" + ConsoleColors.RESET);
+            return false;
+        }
+        else if(!input.matches("^(?=.*[A-Z])(?=.{3,}).+$"+"[a-z\\s]*$")){    
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter completed data." + ConsoleColors.RESET);
+            return false;
+        }
+        
+        else 
+            return true;
+        
+    }
+    
+    public boolean integerVaidation(String input) {
+        if (input.isEmpty()){
+            System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
+            return false;
+        }
+        else if (input.matches("^(?=.*\\d)")){
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number." + ConsoleColors.RESET); 
+                return false;
+        }
+        else if (input.length()!=12){
+                System.out.println(ConsoleColors.BLUE_BOLD + "Please enter completed value!" + ConsoleColors.RESET);
+                System.out.println("123");
+                return false;
+        }
+        else 
+            return true;
+    }
+    
+    
+    public void RegisterStudent(){
+        
+        //boolean result = true;
+        String firstName;
+        String lastName; 
+        String ic;
+        String education;
+        Main.banner();
+        
+        while (true){
+            System.out.print("First Name: ");
+            firstName = scan.nextLine();
+            
+            if (validateEmptyInput(firstName)){
+                break;
+            }
+        }    
+        while (true){
+            System.out.print("Last Name: ");
+            lastName = scan.nextLine();
+            
+            if (validateEmptyInput(lastName)){
+                break;
+            }
+               
+        }
+        while (true){
+            System.out.print("Number of Identity Card (Number only): ");
+            ic = scan.nextLine();
+            if (integerVaidation(ic)){
+                break;
+            }   
+            
+        }
+        
+        while (true){
+            System.out.print("Highest level of education: ");
+            education = scan.nextLine();
+            
+            if (validateEmptyInput(education)){
+                break;
+            }
+        }
+        
+        System.out.println(ConsoleColors.GREEN_BOLD + "1. Confirm Register     "+ConsoleColors.RESET + ConsoleColors.RED +"     2. Cancel Register"+ConsoleColors.RESET);
+        System.out.print("Your choice --> ");
+        String confirmation = scan.nextLine();
+        Main.checkInputMenu(2, confirmation);
+       
+        
+        switch (confirmation) {
+            case "1":
+
+                Student newStudent = new Student(firstName, lastName, ic, education);
+                Main.db.studentList.add(newStudent);
+                StudentRegistration newRegistration = new StudentRegistration(new Date(), "approved", newStudent);
+                Main.db.registerList.add(newRegistration);
+                
+                System.out.println("");
+                System.out.println("");
+                System.out.println(ConsoleColors.CYAN + "** You are succeful registered **" + ConsoleColors.RESET);
+                System.out.println("You Student ID is " + ConsoleColors.CYAN + newStudent.getStudentID()+ ConsoleColors.RESET);
+                System.out.println("Default password is " + ConsoleColors.CYAN + newStudent.getPassword() + ConsoleColors.RESET);
+                
+                System.out.println("Press enter go back to menu...");
+                String enter = scan.nextLine();
+                break;
+            
+            case "2":
+                System.out.println("Already cancel registration.");
+                Navigation();
+                
+        }
+ 
 //        System.out.println(Student.getCount());
 //        System.out.println(StudentRegistration.getCount());
-//        
-//        Main.scan.nextLine();
-//        
-//    }
+        
+
+    }
+    
     /**
      * ***********************************************************************
      */
