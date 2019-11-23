@@ -40,7 +40,10 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ic = ic;
+        this.password = ic;
         this.eduBackground = eduBackground;
+        this.cgpa = 0.00;
+        this.studyStatus = "good";
         this.contactNumber = contactNumber;
         this.address = address;
         this.postcode = postcode;
