@@ -41,14 +41,14 @@ public class Database {
         registerList.add(r5);
         studentList.add(s5);
         
-        for (int i = 6 ; i < 20; i++) {
-            date.set(2019, 9, i);
-            String firstName = randomFirstName();
-            String randomIC = randomIC();
-            Student s = new Student(firstName, "Yong Tat", randomIC, "Foundation");
-            StudentRegistration r = new StudentRegistration(date.getTime(), "pending", s);
-            registerList.add(r);
-        }
+//        for (int i = 6 ; i < 20; i++) {
+//            date.set(2019, 9, i);
+//            String firstName = randomFirstName();
+//            String randomIC = randomIC();
+//            Student s = new Student(firstName, "Yong Tat", randomIC, "Foundation");
+//            StudentRegistration r = new StudentRegistration(date.getTime(), "pending", s);
+//            registerList.add(r);
+//        }
     }
 
     private void addAdminData() {
