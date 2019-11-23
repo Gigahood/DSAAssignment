@@ -224,13 +224,13 @@ public class AdminModule {
     private void searchByPending() {
         while (true) {
             Main.clearScreen();
-            // format for displaying date
-            SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yyyy");
+//            // format for displaying date
+//            SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yyyy");
             String str = "";
 
             System.out.println("***Searched Result with Pending Status***");
             System.out.println("");
-            System.out.println("Today Date : " + ft.format(new Date()));
+           // System.out.println("Today Date : " + ft.format(new Date()));
             System.out.println("");
             MyList<StudentRegistration> registrationList = Main.db.registerList;
             int length = registrationList.size();
@@ -242,11 +242,10 @@ public class AdminModule {
 
             for (int i = 0; i < length; i++) {
                 if (registrationList.get(i).getStatus().equals("pending")) {
-                    str += String.format("%-10s %-30s %-30s %-20s %-15s\n",
+                    str += String.format("%-10s %-30s %-30s  \n",
                             studentIndex,
                             registrationList.get(i).getRegistrationID(),
-                            getDayDifference(registrationList.get(i).getRegistrationDate().getTime()) + " days ago",
-                            ft.format(registrationList.get(i).getRegistrationDate()),
+                            
                             ConsoleColors.YELLOW + registrationList.get(i).getStatus() + ConsoleColors.RESET);
                     studentIndex++;
                 }
