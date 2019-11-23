@@ -67,7 +67,7 @@ public interface MyList<T> {
         Description   : Remove every element inside the list
         Precondition  : None
         Postcondition : All element being removed fomr the list
-        Return        : None
+        Return        : None 
     */
     void removeAll();
     
