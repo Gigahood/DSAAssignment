@@ -2,6 +2,7 @@ package SearchEngine;
 
 import Constant.ConsoleColors;
 import Constant.StringVar;
+import DataClass.Student;
 import DataClass.StudentRegistration;
 import DataStructureClass.MyList;
 import java.text.SimpleDateFormat;
