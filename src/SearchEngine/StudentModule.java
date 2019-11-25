@@ -2,6 +2,8 @@ package SearchEngine;
 
 import Constant.StringVar;
 import DataClass.Student;
+import java.io.Console;
+import java.io.IOException;
 
 public class StudentModule {
 
@@ -17,7 +19,7 @@ public class StudentModule {
     }
 
     public void ShowStudentDetail() {
-        System.out.println(String.format("%s", Center(StringVar.LBL_STUDENT_DETAIL, 50)));
+        System.out.println(String.format("%s", Center(StringVar.LBL_STUDENT_DETAIL, 50, false)));
         System.out.println(String.format("|%-50s|", StringVar.LBL_STUDENT_ID + Main.db.studentList.get(index).getStudentID()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_FIRST_NAME + Main.db.studentList.get(index).getFirstName()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_LAST_NAME + Main.db.studentList.get(index).getLastName()));
@@ -25,7 +27,7 @@ public class StudentModule {
         System.out.println(String.format("|%-50s|", StringVar.LBL_STATUS + Main.db.studentList.get(index).getStudyStatus()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_CGPA + Main.db.studentList.get(index).getCgpa()));
         System.out.println();
-        System.out.println(String.format("%s", Center(StringVar.LBL_CONTACT_DETAIL, 50)));
+        System.out.println(String.format("%s", Center(StringVar.LBL_CONTACT_DETAIL, 50, false)));
         System.out.println(String.format("|%-50s|", StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_ADDRESS + Main.db.studentList.get(index).getAddress()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_POSTCODE + Main.db.studentList.get(index).getPostcode()));
@@ -41,12 +43,12 @@ public class StudentModule {
                 Menu();
                 input = Main.scan.nextLine();
 
-                if (Main.checkInputMenu(3, input)) {
+                if (Main.checkInputMenu(4, input)) {
                     break;
                 }
             }
 
-            if (input.equals("3")) {
+            if (input.equals("4")) {
                 break;
             }
 
@@ -57,6 +59,9 @@ public class StudentModule {
                 case "2":
                     EditStudentDetail();
                     break;
+                case "3":
+                    EditLoginCredential();
+                    break;
             }
         }
     }
@@ -65,13 +70,14 @@ public class StudentModule {
         System.out.println("Student Module");
         System.out.println("1. View Student Detail");
         System.out.println("2. Edit Student Detail");
-        System.out.println("3. Return");
+        System.out.println("3. Edit Login Credential");
+        System.out.println("4. Return");
         System.out.print("Your Selection ---> ");
     }
 
-    public void EditStudentDetail() {
+    private void EditStudentDetail() {
 
-        System.out.println(String.format("%s", Center(StringVar.LBL_STUDENT_DETAIL, 50)));
+        System.out.println(String.format("%s", Center(StringVar.LBL_STUDENT_DETAIL, 50, false)));
 
         System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber()));
         System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_CONTACT_NUMBER));
@@ -103,8 +109,47 @@ public class StudentModule {
         ShowStudentDetail();
     }
 
-    public String Center(String text, int length) {
-        String out = String.format("%" + length + "s%s%" + length + "s", "", text, "");
+    private void EditLoginCredential() {
+
+        System.out.println(String.format("%s", Center(StringVar.LBL_LOGIN_CREDENTIAL, 50, false)));
+
+        System.out.print(String.format("%s", StringVar.LBL_CURRENT + StringVar.LBL_PASSWORD));
+        input = Main.scan.nextLine();
+        String currentPassword = input;
+
+        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_PASSWORD));
+        input = Main.scan.nextLine();
+        String newPassword = input;
+
+        System.out.print(String.format("%s", StringVar.LBL_REENTER_NEW_PASSWORD));
+        input = Main.scan.nextLine();
+        String confirmNewPassword = input;
+
+        if ((currentPassword.equals(Main.db.studentList.get(index).getPassword()))) {
+            if (newPassword.equals(confirmNewPassword)) {
+                student.setPassword(newPassword);
+                Main.db.studentList.replace(index, student);
+                System.out.println(String.format("%s",
+                        Center(StringVar.MSG_UPDATE_SUCCESS_PASSWORD, 50, true)));
+            } else {
+                System.out.println(String.format("%s",
+                        Center(StringVar.MSG_MATCH_FAIL_PASSWORD, 50, true)));
+            }
+        } else {
+            System.out.println(String.format("%s",
+                    Center(StringVar.MSG_INVALID_PASSWORD, 50, true)));
+        }
+    }
+
+    public String Center(String text, int length, Boolean withAsterisk) {
+        String out;
+
+        if (withAsterisk) {
+            out = String.format("%" + length + "s%s%" + length + "s", "", text, "").replace(" ", "*");
+        } else {
+            out = String.format("%" + length + "s%s%" + length + "s", "", text, "");
+        }
+
         float middle = (out.length() / 2);
         float start = middle - (length / 2);
         float end = start + length;

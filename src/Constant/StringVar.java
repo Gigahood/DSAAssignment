@@ -20,4 +20,12 @@ public class StringVar {
     public static final String LBL_POSTCODE = "Postcode : ";
     public static final String LBL_CITY = "City : ";
     public static final String LBL_STATE = "State : ";
+
+    public static final String LBL_LOGIN_CREDENTIAL = "Login Credential";
+    public static final String LBL_PASSWORD = "Password : ";
+    public static final String LBL_REENTER_NEW_PASSWORD = "Re-Enter New Password : ";
+
+    public static final String MSG_UPDATE_SUCCESS_PASSWORD = "Password Has Been Successfully Updated";
+    public static final String MSG_MATCH_FAIL_PASSWORD = "Password and Confirm Password Does Not Match";
+    public static final String MSG_INVALID_PASSWORD = "Invalid Password";
 }
