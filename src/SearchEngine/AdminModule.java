@@ -344,7 +344,7 @@ public class AdminModule {
             System.out.println("***Total " + (studentIndex - 1) + " Students***");
             System.out.println("");
             if (studentIndex == 1) {
-                System.out.println("Currently No Pending Student Registration!");
+                System.out.println(ConsoleColors.RED_BOLD + "Currently No Pending Student Registration!" + ConsoleColors.RESET);
                 System.out.println("Press Enter To Continue...");
                 Main.scan.nextLine();
             }
