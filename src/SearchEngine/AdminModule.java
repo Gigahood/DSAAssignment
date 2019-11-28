@@ -109,8 +109,8 @@ public class AdminModule {
             System.out.println(ConsoleColors.PURPLE_BOLD + "INVALID INPUT! Only Accepted Character." + ConsoleColors.RESET);
             return false;
         }
-        else if(!input.matches("^(?=.*[A-Z])(?=.{2,}).+$")){    
-            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter at least one upcase character." + ConsoleColors.RESET);
+        else if(!input.matches("^(?=.{2,}).+$")){    
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter at least two characters." + ConsoleColors.RESET);
             return false;
         }
         
