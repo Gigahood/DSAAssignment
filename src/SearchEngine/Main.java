@@ -5,9 +5,10 @@ import DataStructureClass.*;
 import java.util.Scanner;
 
 public class Main {
+
     public static Scanner scan = new Scanner(System.in);
     public static Database db = new Database();
-    
+
     public static void main(String[] args) {
         mainMenu();
         //test();
@@ -17,18 +18,17 @@ public class Main {
 //    private static void test() {
 //  
 //    }
-    
     private static void test() {
         String str = "";
         str += String.format("%-20s %-10s", "StudentID", "student Name\n");
-        str += String.format("123" , "213123213\n");
-        str += String.format("%-20s %-10s", "123123231231231" , "213123213");
+        str += String.format("123", "213123213\n");
+        str += String.format("%-20s %-10s", "123123231231231", "213123213");
         System.out.println(str);
     }
-    
+
     public static void mainMenu() {
         String input;
-        
+
         while (true) {
             // menu selection start
             while (true) {
@@ -40,7 +40,7 @@ public class Main {
                     break;
                 }
             } // menu selection end
-            
+
             // if 4 end program else go into the category
             if (input.equals("4")) {
                 break;
@@ -59,7 +59,7 @@ public class Main {
             }
         }
     }
-    
+
     private static void mainMenuUI() {
         System.out.println("");
         System.out.println("Please enter your selection : ");
@@ -70,39 +70,40 @@ public class Main {
         System.out.println("");
         System.out.print("Your Selection ---> ");
     }
-    
+
     public static boolean checkInputMenu(int limit, String input) {
         if (input.isEmpty()) {
+            System.out.println("");
+            System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
+            System.out.println("Press Enter To Continue");
+            Main.scan.nextLine();
+            Main.clearScreen();
             return false;
         }
-        
+
         try {
             int inputInt = Integer.parseInt(input);
-            return ((inputInt >= 1 && inputInt <= limit));
+            boolean valid = ((inputInt >= 1 && inputInt <= limit));
+
+            if (!valid) {
+                System.out.println("");
+                System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number within range!!" + ConsoleColors.RESET);
+                System.out.println("Press Enter To Continue");
+                Main.scan.nextLine();
+                Main.clearScreen();
+            }
+
+            return valid;
         } catch (Exception e) {
+            System.out.println("");
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number." + ConsoleColors.RESET);
+            System.out.println("Press Enter To Continue");
+            Main.scan.nextLine();
+            Main.clearScreen();
             return false;
         }
     }
-    
-//    public static void MenuOption() {
-//        Scanner scan = new Scanner(System.in);
-//
-//        System.out.println("Main Menu");
-//        System.out.println("01. Student Detail");
-//        System.out.println("Please Enter Menu Code");
-//
-//        String input = scan.nextLine();
-//        
-//        switch (input) {
-//            case "01":
-//                StudentDetail studentDetail = new StudentDetail();
-//                studentDetail.Show();
-//                break;
-//            default:
-//                MenuOption();
-//                break;
-//        }
-//    }
+
 
     public static void banner() {
         System.out.println("-----------------------");
