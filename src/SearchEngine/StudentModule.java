@@ -2,8 +2,8 @@ package SearchEngine;
 
 import Constant.StringVar;
 import DataClass.Student;
-import java.io.Console;
-import java.io.IOException;
+import StringHelper.Alignment;
+import StringHelper.Validator;
 
 public class StudentModule {
 
@@ -19,7 +19,7 @@ public class StudentModule {
     }
 
     public void ShowStudentDetail() {
-        System.out.println(String.format("%s", Center(StringVar.LBL_STUDENT_DETAIL, 50, false)));
+        System.out.println(Alignment.Center(50, StringVar.LBL_STUDENT_DETAIL, false));
         System.out.println(String.format("|%-50s|", StringVar.LBL_STUDENT_ID + Main.db.studentList.get(index).getStudentID()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_FIRST_NAME + Main.db.studentList.get(index).getFirstName()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_LAST_NAME + Main.db.studentList.get(index).getLastName()));
@@ -27,7 +27,7 @@ public class StudentModule {
         System.out.println(String.format("|%-50s|", StringVar.LBL_STATUS + Main.db.studentList.get(index).getStudyStatus()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_CGPA + Main.db.studentList.get(index).getCgpa()));
         System.out.println();
-        System.out.println(String.format("%s", Center(StringVar.LBL_CONTACT_DETAIL, 50, false)));
+        System.out.println(Alignment.Center(50, StringVar.LBL_CONTACT_DETAIL, false));
         System.out.println(String.format("|%-50s|", StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_ADDRESS + Main.db.studentList.get(index).getAddress()));
         System.out.println(String.format("|%-50s|", StringVar.LBL_POSTCODE + Main.db.studentList.get(index).getPostcode()));
@@ -76,33 +76,64 @@ public class StudentModule {
     }
 
     private void EditStudentDetail() {
+        String contactNumber;
+        String address;
+        String postcode;
+        String city;
+        String state;
 
-        System.out.println(String.format("%s", Center(StringVar.LBL_STUDENT_DETAIL, 50, false)));
+        System.out.println(Alignment.Center(50, StringVar.LBL_STUDENT_DETAIL, false));
 
-        System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber()));
-        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_CONTACT_NUMBER));
-        input = Main.scan.nextLine();
-        student.setContactNumber(input);
+        while (true) {
+            System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber()));
+            System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_CONTACT_NUMBER));
+            contactNumber = Main.scan.nextLine();
+            if (Validator.StringValidation(contactNumber, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
-        System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_ADDRESS + Main.db.studentList.get(index).getAddress()));
-        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_ADDRESS));
-        input = Main.scan.nextLine();
-        student.setAddress(input);
+        while (true) {
+            System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_ADDRESS + Main.db.studentList.get(index).getAddress()));
+            System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_ADDRESS));
+            address = Main.scan.nextLine();
+            if (Validator.StringValidation(address, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
-        System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_POSTCODE + Main.db.studentList.get(index).getPostcode()));
-        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_POSTCODE));
-        input = Main.scan.nextLine();
-        student.setPostcode(input);
+        while (true) {
+            System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_POSTCODE + Main.db.studentList.get(index).getPostcode()));
+            System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_POSTCODE));
+            postcode = Main.scan.nextLine();
+            if (Validator.StringValidation(postcode, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
-        System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_CITY + Main.db.studentList.get(index).getCity()));
-        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_CITY));
-        input = Main.scan.nextLine();
-        student.setCity(input);
+        while (true) {
+            System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_CITY + Main.db.studentList.get(index).getCity()));
+            System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_CITY));
+            city = Main.scan.nextLine();
+            if (Validator.StringValidation(city, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
-        System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_STATE + Main.db.studentList.get(index).getState()));
-        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_STATE));
-        input = Main.scan.nextLine();
-        student.setState(input);
+        while (true) {
+            System.out.println(String.format("|%-50s|", StringVar.LBL_CURRENT + StringVar.LBL_STATE + Main.db.studentList.get(index).getState()));
+            System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_STATE));
+            state = Main.scan.nextLine();
+            if (Validator.StringValidation(state, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
+
+        student.setContactNumber(contactNumber);
+        student.setAddress(address);
+        student.setPostcode(postcode);
+        student.setCity(city);
+        student.setState(state);
 
         Main.db.studentList.replace(index, student);
 
@@ -110,49 +141,46 @@ public class StudentModule {
     }
 
     private void EditLoginCredential() {
+        String currentPassword;
+        String newPassword;
+        String confirmNewPassword;
 
-        System.out.println(String.format("%s", Center(StringVar.LBL_LOGIN_CREDENTIAL, 50, false)));
+        System.out.println(Alignment.Center(50, StringVar.LBL_LOGIN_CREDENTIAL, false));
 
-        System.out.print(String.format("%s", StringVar.LBL_CURRENT + StringVar.LBL_PASSWORD));
-        input = Main.scan.nextLine();
-        String currentPassword = input;
+        while (true) {
+            System.out.print(String.format("%s", StringVar.LBL_CURRENT + StringVar.LBL_PASSWORD));
+            currentPassword = Main.scan.nextLine();
+            if (Validator.StringValidation(currentPassword, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
-        System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_PASSWORD));
-        input = Main.scan.nextLine();
-        String newPassword = input;
+        while (true) {
+            System.out.print(String.format("%s", StringVar.LBL_NEW + StringVar.LBL_PASSWORD));
+            newPassword = Main.scan.nextLine();
+            if (Validator.StringValidation(newPassword, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
-        System.out.print(String.format("%s", StringVar.LBL_REENTER_NEW_PASSWORD));
-        input = Main.scan.nextLine();
-        String confirmNewPassword = input;
+        while (true) {
+            System.out.print(String.format("%s", StringVar.LBL_REENTER_NEW_PASSWORD));
+            confirmNewPassword = Main.scan.nextLine();
+            if (Validator.StringValidation(confirmNewPassword, Validator.TypeOfValidation.empty)) {
+                break;
+            }
+        }
 
         if ((currentPassword.equals(Main.db.studentList.get(index).getPassword()))) {
             if (newPassword.equals(confirmNewPassword)) {
                 student.setPassword(newPassword);
                 Main.db.studentList.replace(index, student);
-                System.out.println(String.format("%s",
-                        Center(StringVar.MSG_UPDATE_SUCCESS_PASSWORD, 50, true)));
+                System.out.println(Alignment.Center(50, StringVar.MSG_UPDATE_SUCCESS_PASSWORD, true));
             } else {
-                System.out.println(String.format("%s",
-                        Center(StringVar.MSG_MATCH_FAIL_PASSWORD, 50, true)));
+                System.out.println(Alignment.Center(50, StringVar.MSG_MATCH_FAIL_PASSWORD, true));
             }
         } else {
-            System.out.println(String.format("%s",
-                    Center(StringVar.MSG_INVALID_PASSWORD, 50, true)));
+            System.out.println(Alignment.Center(50, StringVar.MSG_INVALID_PASSWORD, true));
         }
-    }
-
-    public String Center(String text, int length, Boolean withAsterisk) {
-        String out;
-
-        if (withAsterisk) {
-            out = String.format("%" + length + "s%s%" + length + "s", "", text, "").replace(" ", "*");
-        } else {
-            out = String.format("%" + length + "s%s%" + length + "s", "", text, "");
-        }
-
-        float middle = (out.length() / 2);
-        float start = middle - (length / 2);
-        float end = start + length;
-        return out.substring((int) start, (int) end);
     }
 }
