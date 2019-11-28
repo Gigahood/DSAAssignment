@@ -122,11 +122,11 @@ public class AdminModule {
         if (input.isEmpty()) {
             System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
             return false;
-        } else if (input.matches("^(?=.*\\d)")) {
+        } else if (!isNumeric(input)) {
             System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number." + ConsoleColors.RESET);
             return false;
         } else if (input.length() != 12) {
-            System.out.println(ConsoleColors.BLUE_BOLD + "Please enter completed value!" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.BLUE_BOLD + "Please enter completed value (12 digit)!" + ConsoleColors.RESET);
             return false;
         } else {
             return true;
@@ -255,6 +255,15 @@ public class AdminModule {
 
         }
 
+    }
+    
+    private boolean isNumeric(String input) {
+        try {
+            int d = Integer.parseInt(input);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 }
