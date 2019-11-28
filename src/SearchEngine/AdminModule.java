@@ -229,17 +229,18 @@ public class AdminModule {
                 System.out.println("Please select your Criteria : ");
                 System.out.println("1. Search By student ID");
                 System.out.println("2. Search By Registration Status");
-                System.out.println("3. Return");
+                System.out.println("3. Search By Student Name");
+                System.out.println("4. Return");
                 System.out.println("");
                 System.out.print("Your Selection ---> ");
                 input = Main.scan.nextLine();
-                if (Main.checkInputMenu(3, input)) {
+                if (Main.checkInputMenu(4, input)) {
                     break;
                 }
 
             }
 
-            if (input.equals("3")) {
+            if (input.equals("4")) {
                 break;
             }
 
@@ -251,6 +252,8 @@ public class AdminModule {
                     SearchRegistrationStatus s = new SearchRegistrationStatus();
                     s.start();
                     break;
+                case "3":
+                    SearchName sn = new SearchName();
             }
 
         }
