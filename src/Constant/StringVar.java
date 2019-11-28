@@ -28,4 +28,5 @@ public class StringVar {
     public static final String MSG_UPDATE_SUCCESS_PASSWORD = "Password Has Been Successfully Updated";
     public static final String MSG_MATCH_FAIL_PASSWORD = "Password and Confirm Password Does Not Match";
     public static final String MSG_INVALID_PASSWORD = "Invalid Password";
+    public static final String MSG_EMPTY = "The input should not be empty! ";
 }
