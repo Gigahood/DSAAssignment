@@ -22,9 +22,12 @@ public class ViewRegistrationDetail {
     String ic;
     int counter = 0;
     boolean result = true;
+    boolean flag2 = false;
+    boolean flag3 = false;
 
     public ViewRegistrationDetail() {
         // provide back button
+        counter = 0;
         inputScreen();
 
     }
@@ -39,6 +42,11 @@ public class ViewRegistrationDetail {
             if (validateField(num, ic) == true) {
                 if (matchRegistrationID() == true) {
                     break;
+                } else {
+                    System.out.println("Please enter your Registration Number");
+                    num = s.nextLine();
+                    System.out.println("Please enter your password: ");
+                    ic = s.nextLine();
                 }
             } else {
                 System.out.println("Please enter your Registration Number");
@@ -48,8 +56,13 @@ public class ViewRegistrationDetail {
             }
 
         }
-        if (counter > 5) {
+        if (counter >= 4) {
             System.out.println("Exceed amount of tries");
+
+            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+            System.out.println();
+            System.out.println();
+            System.out.println();
             Main.mainMenu();
         }
 
@@ -59,11 +72,14 @@ public class ViewRegistrationDetail {
         //validation
         if (num.isEmpty() == true || ic.isEmpty() == true) {
             System.out.println(ConsoleColors.RED_BOLD + MSG_EMPTY + ConsoleColors.RESET);
+            Main.clearScreen();
             result = false;
         } else if (!num.matches("[0-9]+")) {
+            Main.clearScreen();
             System.out.println(ConsoleColors.RED_BOLD + "Registration ID can only have digit ." + ConsoleColors.RESET);
             result = false;
         } else if (num.length() != 9) {
+            Main.clearScreen();
             System.out.println(ConsoleColors.RED_BOLD + "Incorrect length for registration ID ." + ConsoleColors.RESET);
             result = false;
         } else {
@@ -71,14 +87,15 @@ public class ViewRegistrationDetail {
         }
         //trace counter
         if (result == false) {
+            System.out.println(ConsoleColors.RED_BOLD + "You have " + (4 - counter) + " trials left" + ConsoleColors.RESET);
+            System.out.println();
             counter++;
         }
         return result;
     }
 
     private boolean matchRegistrationID() {
-        boolean flag2 = false;
-        boolean flag3 = false;
+
         //2 = ID is incorrect
         //3 = ID is not exist and/or incorrect password
         for (int i = 0; i < Main.db.registerList.size(); i++) {
@@ -87,29 +104,58 @@ public class ViewRegistrationDetail {
             StudentRegistration student = Main.db.registerList.get(i);
             if (num.equals(student.getRegistrationID()) && ic.equals(student.getPassword())) {
                 if (student.getStatus().equals("approved")) {
-                    System.out.println("Your registration status has been approved. ");
+                    Main.clearScreen();
+                    System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+                    System.out.println("Your registration status has been "
+                            + ConsoleColors.GREEN_BOLD_BRIGHT + " approved" + ConsoleColors.RESET + ". ");
+                    System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
 
 //                    System.out.println("Your Student ID is " + student.getStudent().getStudentID());
                 } else if (student.getStatus().equals("rejected")) {
-                    System.out.println("Your registration has been rejected. ");
+                    Main.clearScreen();
+                    System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+                    System.out.println("Your registration has been "
+                            + ConsoleColors.RED_BOLD_BRIGHT + " rejected" + ConsoleColors.RESET + ". ");
+                    System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
                 } else {
-                    System.out.println("Your current registration status is : " + student.getStatus());
+                    Main.clearScreen();
+                    System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+                    System.out.println("Your current registration status is : "
+                            + ConsoleColors.YELLOW_BOLD_BRIGHT+ student.getStatus() + ConsoleColors.RESET + ". ");
+                    System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "*******************************************************************" + ConsoleColors.RESET);
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
                 }
                 break;
             } else if (num.equals(student.getRegistrationID()) && !(ic.equals(student.getPassword()))) {
 
                 flag2 = true;
-            } else if (!num.equals(student.getRegistrationID()) && !(ic.equals(student.getPassword()))) {
+                break;
+            } else if (!(num.equals(student.getRegistrationID())) && !(ic.equals(student.getPassword()))) {
                 flag3 = true;
             }
 
         }
+
         // show error message after loop
         if (flag2 == true) {
-            System.out.println(ConsoleColors.RED_BOLD + "The Registration ID is incorrect. " + ConsoleColors.RESET);
-        }
-        if (flag3 == true) {
+            Main.clearScreen();
+            System.out.println(ConsoleColors.RED_BOLD + "The Password is incorrect. " + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD + "You have " + (4 - counter) + " trials left" + ConsoleColors.RESET);
+            System.out.println();
+
+        } else if (flag3 == true) {
+            Main.clearScreen();
             System.out.println(ConsoleColors.RED_BOLD + "Invalid Registration ID or password.  " + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD + "You have " + (4 - counter) + " trials left" + ConsoleColors.RESET);
+            System.out.println();
         }
         //trace counter
         if (flag2 == true || flag3 == true) {
