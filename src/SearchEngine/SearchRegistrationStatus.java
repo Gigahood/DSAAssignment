@@ -91,38 +91,47 @@ public class SearchRegistrationStatus {
                     approvedList.add(registrationList.get(i));
                 }
             }
-            
+
             if (approvedList.isEmpty()) {
+                
+                SimpleDateFormat ft = new SimpleDateFormat("dd.MM.yyyy");
+
+                System.out.println("***Searched Result with Pending Status***");
+                System.out.println("");
+                System.out.println("Today Date : " + ft.format(new Date()));
+                System.out.println("");
+                
                 System.out.println(ConsoleColors.RED_BOLD + "Currently No Pending Student" + ConsoleColors.RESET);
-            }
-            
-            length2 = approvedList.size();
-            
-            page = getPageSize(length2);
-            min = getMin(currentPage);
-            max = getMax(currentPage, page, length2);
-            studentIndex = getStudentIndex(min);
-            String code;
-            String input;
-            
-            printApprovedList(approvedList, min, max, studentIndex);
-            System.out.println("");
-            System.out.println("Page : " + currentPage + " / " + page);
-            System.out.println("Total Number of Students : " + length2);
-            System.out.println("");
-            String navigationCode = printNavigation(currentPage, page);
-            
-            //validateNavigationCode(navigationCode);
-            System.out.println("");
-            System.out.print("Your Choice --> ");
-            input = Main.scan.nextLine();
-            
-            
-            code = getCode(navigationCode, input);
+                
+                System.out.println("Press Enter To back");
+                Main.scan.nextLine();
+                break;
+                
+            } else {
+                length2 = approvedList.size();
 
+                page = getPageSize(length2);
+                min = getMin(currentPage);
+                max = getMax(currentPage, page, length2);
+                studentIndex = getStudentIndex(min);
+                String code;
+                String input;
 
+                printApprovedList(approvedList, min, max, studentIndex);
+                System.out.println("");
+                System.out.println("Page : " + currentPage + " / " + page);
+                System.out.println("Total Number of Students : " + length2);
+                System.out.println("");
+                String navigationCode = printNavigation(currentPage, page);
 
-            /*
+                //validateNavigationCode(navigationCode);
+                System.out.println("");
+                System.out.print("Your Choice --> ");
+                input = Main.scan.nextLine();
+
+                code = getCode(navigationCode, input);
+
+                /*
                 1. Next page
                 2. Previous Page
                 3. Approve Student
@@ -130,48 +139,51 @@ public class SearchRegistrationStatus {
                 5. Out of Range
                 6. Empty
                 7. Not number
-             */
-            if (code.equals("4")) {
-                break;
-            }
-
-            switch (code) {
-                case "1":
-                    currentPage++;
+                 */
+                if (code.equals("4")) {
                     break;
-                case "2":
-                    currentPage--;
-                    break;
-                case "3":
-                    System.out.println("");
-                    System.out.println("Please enter Registration ID --> ");
-                    String id = Main.scan.nextLine();
+                }
 
-                    StudentRegistration student = validateRegistrationID(id);
-                    if (student != null) {
-                        approveStudent(student);
-                    } else {
-                        System.out.println(ConsoleColors.RED_BOLD + "No Such Student" + ConsoleColors.RESET);
-                        System.out.println("Press enter to continue");
+                switch (code) {
+                    case "1":
+                        currentPage++;
+                        break;
+                    case "2":
+                        currentPage--;
+                        break;
+                    case "3":
+                        System.out.println("");
+                        System.out.println("Please enter Registration ID --> ");
+                        String id = Main.scan.nextLine();
+
+                        StudentRegistration student = validateRegistrationID(id);
+                        if (student != null) {
+                            approveStudent(student);
+                        } else {
+                            System.out.println(ConsoleColors.RED_BOLD + "No Such Student" + ConsoleColors.RESET);
+                            System.out.println("Press enter to continue");
+                            Main.scan.nextLine();
+
+                        }
+                        currentPage = 1;
+                        break;
+                    case "5":
+                        System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number within range!!" + ConsoleColors.RESET);
                         Main.scan.nextLine();
+                        break;
+                    case "6":
+                        System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
+                        Main.scan.nextLine();
+                        break;
+                    case "7":
+                        System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number." + ConsoleColors.RESET);
+                        Main.scan.nextLine();
+                        break;
+                }
+                Main.clearScreen();
 
-                    }
-                    currentPage = 1;
-                    break;
-                case "5" :
-                    System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number within range!!" + ConsoleColors.RESET);
-                    Main.scan.nextLine();
-                    break;
-                case "6" :
-                    System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
-                    Main.scan.nextLine();
-                    break;
-                case "7" :
-                     System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number." + ConsoleColors.RESET);
-                    Main.scan.nextLine();
-                    break;
             }
-            Main.clearScreen();
+
         }
     }
 
@@ -417,7 +429,7 @@ public class SearchRegistrationStatus {
 //                code = "5";
 //                break;
         }
-        
+
         if (input.isEmpty()) {
             code = "6";
         } else {
@@ -427,7 +439,7 @@ public class SearchRegistrationStatus {
                 code = "7";
             }
         }
-        
+
         return code;
     }
 }
