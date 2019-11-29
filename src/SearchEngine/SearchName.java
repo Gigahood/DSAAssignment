@@ -25,7 +25,7 @@ public class SearchName {
         SearchNameUI();
         System.out.println("Do you want to continue to search? Press 1 to continue, press other to exit.");
         x = Main.scan.nextLine();
-        if (x == "1")
+        if (x.equals("1"))
         {
             SearchNameUI();
         }
