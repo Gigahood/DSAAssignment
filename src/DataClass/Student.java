@@ -39,6 +39,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ic = ic;
+        this.password = ic;
         this.eduBackground = eduBackground;
         this.contactNumber = contactNumber;
         this.address = address;
