@@ -262,7 +262,7 @@ public class AdminModule {
     
     private boolean isNumeric(String input) {
         try {
-            int d = Integer.parseInt(input);
+            long d = Long.parseLong(input);
         } catch (Exception e) {
             return false;
         }

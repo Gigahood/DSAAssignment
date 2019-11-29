@@ -19,7 +19,7 @@ public class Database {
 
     private void addStudentData() {
         Calendar date = Calendar.getInstance();
-        Student s1 = new Student("Kuek", "Yong Boon", "940526105481", "Foundation");
+        Student s1 = new Student("Kuek", "Yong Boon", "940526105481", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
         StudentRegistration r1 = new StudentRegistration(date.getTime(), "approved", s1);
         registerList.add(r1);
         studentList.add(s1);
