@@ -38,7 +38,7 @@ public class ApprovingStudentModule {
                     return Main.db.registerList.get(i);
                 }
             }
-            System.out.println(ConsoleColors.RED_BOLD + "No Such Student" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD + "No Such Registration ID" + ConsoleColors.RESET);
             System.out.println("Press enter to continue");
             Main.scan.nextLine();
         }
@@ -47,6 +47,7 @@ public class ApprovingStudentModule {
 
     private void approveStudent(StudentRegistration student) {
         String input2;
+        boolean exit = false;
         while (true) {
             // menu selection start
             while (true) {
@@ -76,7 +77,7 @@ public class ApprovingStudentModule {
 
             switch (input2) {
                 case "1":
-                    if (confirmationApproved(student)) {
+                    if (confirmationApproved(student).equals("1")) {
                         student.setStatus("approved");
                         Main.db.studentList.add(student.getStudent());
                         System.out.println("");
@@ -87,13 +88,17 @@ public class ApprovingStudentModule {
                         System.out.println("");
                         System.out.println("Press Enter To Continue");
                         Main.scan.nextLine();
-                    }
-                    break;
+                        exit = true;
+                        break;
+                    } 
                 case "2":
                     student.setStatus("rejected");
                     break;
             }
-            break;
+            
+            if (exit) {
+                break;
+            }
         }
     }
 
@@ -106,7 +111,7 @@ public class ApprovingStudentModule {
         }
     }
 
-    private boolean confirmationApproved(StudentRegistration student) {
+    private String confirmationApproved(StudentRegistration student) {
         String choice;
         while (true) {
             confirmUI(student);
@@ -117,14 +122,14 @@ public class ApprovingStudentModule {
             }
         }
 
-        return choice.equals("1");
+        return choice;
     }
 
     private void confirmUI(StudentRegistration student) {
         Main.clearScreen();
-        System.out.println("Are You Sure You Want To Approve "
+        System.out.println("Are You Sure You Want To Approve " + ConsoleColors.YELLOW
                 + student.getStudent().getFirstName()
-                + " " + student.getStudent().getLastName());
+                + " " + student.getStudent().getLastName() + ConsoleColors.RESET);
 
         System.out.println("");
         System.out.println("1. Yes");
