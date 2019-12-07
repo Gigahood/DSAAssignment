@@ -164,7 +164,12 @@ public class Student {
     public String toString() {
         return "Student ID : " + this.studentID
                 + "\nStudent Name : " + this.firstName + " " + this.lastName
-                + "\nIC : " + this.ic;
+                + "\nIC : " + this.ic
+                + "\nContact Number : " + this.contactNumber
+                + "\nAddress : " + this.address
+                + "\nPostcode : " + this.postcode
+                + "\nCity : " + this.city
+                + "\nState : " +this.state;
     }
 
     public void setStudentID() {
