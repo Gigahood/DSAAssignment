@@ -39,8 +39,18 @@ public class SearchName {
     {
         System.out.println("Please enter your Student First Name:");
         FName = Main.scan.nextLine();
+        if(FName.equals(""))
+        {
+            System.out.println("Please do not leave blank!");
+            SearchNameUI();
+        }
         System.out.println("Please enter your Student Last Name:");
         LName = Main.scan.nextLine();
+        if(LName.equals(""))
+        {
+            System.out.println("Please do not leave blank!");
+            SearchNameUI();
+        }
         Compare(FName,LName);
     }
     
