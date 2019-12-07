@@ -152,20 +152,10 @@ public class SearchRegistrationStatus {
                         currentPage--;
                         break;
                     case "3":
-//                        System.out.println("");
-//                        System.out.println("Please enter Registration ID --> ");
-//                        String id = Main.scan.nextLine();
-//
-//                        StudentRegistration student = validateRegistrationID(id);
-//                        if (student != null) {
-//                            approveStudent(student);
-//                        } else {
-//                            System.out.println(ConsoleColors.RED_BOLD + "No Such Student" + ConsoleColors.RESET);
-//                            System.out.println("Press enter to continue");
-//                            Main.scan.nextLine();
-//
-//                        }
-//                        currentPage = 1;
+                        ApprovingStudentModule asm = new ApprovingStudentModule();
+                        asm.start();
+                        
+                        currentPage = 1;
                         break;
                     case "5":
                         System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in number within range!!" + ConsoleColors.RESET);
@@ -213,57 +203,9 @@ public class SearchRegistrationStatus {
         Main.scan.nextLine();
     }
 
-    private StudentRegistration validateRegistrationID(String registrationID) {
-        int length = Main.db.registerList.size();
+    
 
-        for (int i = 0; i < length; i++) {
-            if (Main.db.registerList.get(i).getRegistrationID().equals(registrationID)) {
-                return Main.db.registerList.get(i);
-            }
-        }
-
-        return null;
-    }
-
-    private void approveStudent(StudentRegistration student) {
-//        String input2;
-//        while (true) {
-//            // menu selection start
-//            while (true) {
-//                Main.clearScreen();
-//                System.out.println(student);
-//                System.out.println("");
-//                System.out.println("");
-//                System.out.println("Please select an action : ");
-//                System.out.println("1. Approved");
-//                System.out.println("2. Reject");
-//                System.out.println("3. Return");
-//                System.out.println("");
-//                System.out.print("Your Selection ---> ");
-//                input2 = Main.scan.nextLine();
-//
-//                if (Main.checkInputMenu(3, input2)) {
-//                    break;
-//                }
-//            } // menu selection end
-//
-//            // if 4 end program else go into the category
-//            if (input2.equals("3")) {
-//                break;
-//            }
-//
-//            switch (input2) {
-//                case "1":
-//                    student.setStatus("approved");
-//                    Main.db.studentList.add(student.getStudent());
-//                    break;
-//                case "2":
-//                    student.setStatus("rejected");
-//                    break;
-//            }
-//            break;
-//        }
-    }
+    
 
     private long getDayDifference(long time) {
         // something new here
