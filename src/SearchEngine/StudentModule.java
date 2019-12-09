@@ -75,7 +75,7 @@ public class StudentModule {
         System.out.print("Your Selection ---> ");
     }
 
-    private void EditStudentDetail() {
+    public void EditStudentDetail() {
         String contactNumber;
         String address;
         String postcode;
@@ -129,18 +129,37 @@ public class StudentModule {
             }
         }
 
-        student.setContactNumber(contactNumber);
-        student.setAddress(address);
-        student.setPostcode(postcode);
-        student.setCity(city);
-        student.setState(state);
-
-        Main.db.studentList.replace(index, student);
-
-        ShowStudentDetail();
+        if (UpdateContactInformation(contactNumber, address, postcode, city, state)) {
+            ShowStudentDetail();
+        }
     }
 
-    private void EditLoginCredential() {
+    private Boolean UpdateContactInformation(String contactNumber, String address, String postcode, String city, String state) {
+        if (!contactNumber.equals(Main.db.studentList.get(index).getContactNumber())) {
+            student.setContactNumber(contactNumber);
+        }
+        if (!address.equals(Main.db.studentList.get(index).getAddress())) {
+            student.setAddress(address);
+        }
+        if (!postcode.equals(Main.db.studentList.get(index).getPostcode())) {
+            student.setPostcode(postcode);
+        }
+        if (!city.equals(Main.db.studentList.get(index).getCity())) {
+            student.setCity(city);
+        }
+        if (!state.equals(Main.db.studentList.get(index).getState())) {
+            student.setState(state);
+        }
+
+        if (student != null) {
+            Main.db.studentList.replace(index, student);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void EditLoginCredential() {
         String currentPassword;
         String newPassword;
         String confirmNewPassword;
@@ -171,16 +190,25 @@ public class StudentModule {
             }
         }
 
+        UpdatePassword(currentPassword, newPassword, confirmNewPassword);
+    }
+
+    private Boolean UpdatePassword(String currentPassword, String newPassword, String confirmNewPassword) {
+
         if ((currentPassword.equals(Main.db.studentList.get(index).getPassword()))) {
             if (newPassword.equals(confirmNewPassword)) {
                 student.setPassword(newPassword);
                 Main.db.studentList.replace(index, student);
                 System.out.println(Alignment.Center(50, StringVar.MSG_UPDATE_SUCCESS_PASSWORD, true));
+
+                return true;
             } else {
                 System.out.println(Alignment.Center(50, StringVar.MSG_MATCH_FAIL_PASSWORD, true));
             }
         } else {
             System.out.println(Alignment.Center(50, StringVar.MSG_INVALID_PASSWORD, true));
         }
+
+        return false;
     }
 }
