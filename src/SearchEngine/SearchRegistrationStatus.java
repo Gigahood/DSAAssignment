@@ -72,10 +72,6 @@ public class SearchRegistrationStatus {
     private void searchByPending() {
         Main.clearScreen();
 
-        MyList<StudentRegistration> registrationList = Main.db.registerList;
-
-        int length = registrationList.size();
-
         int length2;
         int page;
         int currentPage = 1;
@@ -85,12 +81,7 @@ public class SearchRegistrationStatus {
 
         while (true) {
             MyList<StudentRegistration> approvedList = new MyArrayList<>();
-
-            for (int i = 0; i < length; i++) {
-                if (registrationList.get(i).getStatus().equals("pending")) {
-                    approvedList.add(registrationList.get(i));
-                }
-            }
+            searchPendingList(approvedList);
 
             if (approvedList.isEmpty()) {
                 
@@ -203,9 +194,6 @@ public class SearchRegistrationStatus {
         Main.scan.nextLine();
     }
 
-    
-
-    
 
     private long getDayDifference(long time) {
         // something new here
@@ -217,7 +205,7 @@ public class SearchRegistrationStatus {
         return days;
     }
 
-    private int getPageSize(int length) {
+    public int getPageSize(int length) {
         int page = length / 5;
 
         if (length % 5 != 0) {
@@ -253,11 +241,11 @@ public class SearchRegistrationStatus {
         System.out.println(str);
     }
 
-    private int getMin(int currentPage) {
+    public int getMin(int currentPage) {
         return (currentPage - 1) * 5;
     }
 
-    private int getMax(int currentPage, int maxPage, int length) {
+    public int getMax(int currentPage, int maxPage, int length) {
         if (currentPage == maxPage) {
             return length;
         } else {
@@ -266,7 +254,7 @@ public class SearchRegistrationStatus {
         //return currentPage * 5;
     }
 
-    private int getStudentIndex(int min) {
+    public int getStudentIndex(int min) {
         return min + 1;
     }
 
@@ -383,5 +371,17 @@ public class SearchRegistrationStatus {
         }
 
         return code;
+    }
+    
+    public void searchPendingList(MyList<StudentRegistration> approvedList) {
+        MyList<StudentRegistration> registrationList = Main.db.registerList;
+        
+        int length = registrationList.size();
+        
+        for (int i = 0; i < length; i++) {
+                if (registrationList.get(i).getStatus().equals("pending")) {
+                    approvedList.add(registrationList.get(i));
+                }
+        }
     }
 }

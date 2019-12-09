@@ -32,7 +32,7 @@ public class Database {
         StudentRegistration r3 = new StudentRegistration(date.getTime(), "rejected", s3);
         registerList.add(r3);
         date.set(2019, 9, 10);
-        Student s4 = new Student("Kuek", "Yong Tat", "940526105482", "Foundation");
+        Student s4 = new Student("Chia", "Yong Tat", "940526105482", "Foundation");
         StudentRegistration r4 = new StudentRegistration(date.getTime(), "pending", s4);
         registerList.add(r4);
         date.set(2019, 8, 10);
