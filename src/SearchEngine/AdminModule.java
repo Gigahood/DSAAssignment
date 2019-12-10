@@ -67,7 +67,7 @@ public class AdminModule {
                     break;
 
                 case "3":
-                    Searching();
+                    SubNavigation();
                     break;
 
             }
@@ -274,19 +274,14 @@ public class AdminModule {
         return true;
     }
 
-    public void Searching() {
-        while (true) {
+    public void SubNavigation() {
 
+        String input;
+        Student selected = new Student();
+
+        while (true) {
             while (true) {
-                Menu();
-                System.out.println("Search By");
-                System.out.println("1. First Name");
-                System.out.println("2. Last Name");
-                System.out.println("3. IC Number");
-                System.out.println("4. Stundent Number");
-                System.out.println("5. Return");
-                System.out.println("");
-                System.out.print("Your Selection ---> ");
+                SubMenu();
                 input = Main.scan.nextLine();
 
                 if (Main.checkInputMenu(5, input)) {
@@ -298,21 +293,38 @@ public class AdminModule {
                 break;
             }
 
-            Student in = new Student();
-
             switch (input) {
                 case "1":
-                    while (true) {
-                        System.out.print("First Name : ");
-                        in.setFirstName(Main.scan.nextLine());
-
-                        if (!Validator.StringValidation(in.getFirstName(), Validator.TypeOfValidation.empty)) {
-                            break;
-                        }
-
-                        System.out.println("Count : " + SearchOperation.SearchByFirstNameResult(in).size());
-                    }
+                    System.out.print(StringVar.LBL_FIRST_NAME);
+                    selected.setFirstName(Main.scan.nextLine());
+                    SearchOperation.SearchByResult(selected, SearchOperation.SearchType.firstName);
+                    break;
+                case "2":
+                    System.out.print(StringVar.LBL_LAST_NAME);
+                    selected.setLastName(Main.scan.nextLine());
+                    SearchOperation.SearchByResult(selected, SearchOperation.SearchType.lastName);
+                    break;
+                case "3":
+                    System.out.print(StringVar.LBL_IC_NUMBER);
+                    selected.setFirstName(Main.scan.nextLine());
+                    SearchOperation.SearchByResult(selected, SearchOperation.SearchType.studentIC);
+                    break;
+                case "4":
+                    System.out.print(StringVar.LBL_STUDENT_ID);
+                    selected.setStudentID(Main.scan.nextLine());
+                    SearchOperation.SearchByResult(selected, SearchOperation.SearchType.studentID);
+                    break;
             }
         }
+    }
+
+    public void SubMenu() {
+        System.out.println("Search By");
+        System.out.println("1. First Name");
+        System.out.println("2. Last Name");
+        System.out.println("3. Student IC");
+        System.out.println("4. Student ID");
+        System.out.println("5. Return");
+        System.out.print("Your Selection ---> ");
     }
 }
