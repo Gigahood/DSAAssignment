@@ -81,6 +81,15 @@ public class StudentRegistration {
                 + "\n"
                 + this.student;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        StudentRegistration a = (StudentRegistration)o;
+        
+        return (this.registrationID.equals(a.getRegistrationID()) 
+                && this.password.equals(a.getPassword())
+                && this.registrationStatus.equals(a.getStatus()));
+    }
 
     /**
      * ***************************************************************************
@@ -137,6 +146,10 @@ public class StudentRegistration {
         } else {
             
         }
+    }
+    
+    public void setRegistrationID (String registrationID) {
+        this.registrationID = registrationID;
     }
 
 }
