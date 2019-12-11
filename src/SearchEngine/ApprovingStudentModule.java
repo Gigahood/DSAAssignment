@@ -34,7 +34,8 @@ public class ApprovingStudentModule {
             Main.scan.nextLine();
         } else {
             for (int i = 0; i < length; i++) {
-                if (Main.db.registerList.get(i).getRegistrationID().equals(registrationID)) {
+                if (Main.db.registerList.get(i).getRegistrationID().equals(registrationID)
+                        && Main.db.registerList.get(i).getStatus().equals("pending")) {
                     return Main.db.registerList.get(i);
                 }
             }
