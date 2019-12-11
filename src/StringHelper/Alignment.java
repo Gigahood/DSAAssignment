@@ -17,7 +17,7 @@ public class Alignment {
         return null;
     }
 
-    public static String Center(String text, int length) {
+    private static String Center(String text, int length) {
         String out = String.format("%" + length + "s%s%" + length + "s", "", text, "");
 
         float middle = (out.length() / 2);

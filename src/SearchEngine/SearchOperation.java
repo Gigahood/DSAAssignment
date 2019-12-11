@@ -20,27 +20,31 @@ public class SearchOperation {
         students = new ArrayList<>();
 
         for (int i = 0; i < Main.db.studentList.size(); i++) {
-            switch (searchType) {
-                case firstName:
-                    if (Main.db.studentList.get(i).getFirstName().contains(student.getFirstName())) {
-                        students.add(Main.db.studentList.get(i));
-                    }
-                    break;
-                case lastName:
-                    if (Main.db.studentList.get(i).getLastName().contains(student.getLastName())) {
-                        students.add(Main.db.studentList.get(i));
-                    }
-                    break;
-                case studentIC:
-                    if (Main.db.studentList.get(i).getIc().contains(student.getIc())) {
-                        students.add(Main.db.studentList.get(i));
-                    }
-                    break;
-                case studentID:
-                    if (Main.db.studentList.get(i).getStudentID().contains(student.getStudentID())) {
-                        students.add(Main.db.studentList.get(i));
-                    }
-                    break;
+            try {
+                switch (searchType) {
+                    case firstName:
+                        if (Main.db.studentList.get(i).getFirstName().contains(student.getFirstName())) {
+                            students.add(Main.db.studentList.get(i));
+                        }
+                        break;
+                    case lastName:
+                        if (Main.db.studentList.get(i).getLastName().contains(student.getLastName())) {
+                            students.add(Main.db.studentList.get(i));
+                        }
+                        break;
+                    case studentIC:
+                        if (Main.db.studentList.get(i).getIc().contains(student.getIc())) {
+                            students.add(Main.db.studentList.get(i));
+                        }
+                        break;
+                    case studentID:
+                        if (Main.db.studentList.get(i).getStudentID().contains(student.getStudentID())) {
+                            students.add(Main.db.studentList.get(i));
+                        }
+                        break;
+                }
+            } catch (NullPointerException npe) {
+                System.out.println(npe.getMessage());
             }
         }
 

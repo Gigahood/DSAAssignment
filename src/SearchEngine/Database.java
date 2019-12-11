@@ -40,6 +40,10 @@ public class Database {
         StudentRegistration r5 = new StudentRegistration(date.getTime(), "approved", s5);
         registerList.add(r5);
         studentList.add(s5);
+        Student s6 = new Student("Wong", "Chia Zhen", "961226025845", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r6 = new StudentRegistration(date.getTime(), "approved", s5);
+        registerList.add(r6);
+        studentList.add(s6);
         
         for (int i = 6 ; i < 20; i++) {
             date.set(2019, 9, i);
