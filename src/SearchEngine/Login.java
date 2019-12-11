@@ -61,6 +61,7 @@ public class Login {
             
             // successful login will go into studentModule
             StudentModule sm = new StudentModule(student, index);
+            sm = new StudentModule();
 
         } else {
             

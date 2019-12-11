@@ -9,11 +9,14 @@ public class StudentModule {
 
     private Student student;
     private int index;
+    private String input;
 
     public StudentModule(Student student, int index) {
         this.student = student;
         this.index = index;
+    }
 
+    public StudentModule() {
         Navigation();
     }
 
@@ -60,8 +63,6 @@ public class StudentModule {
 
     public void Navigation() {
 
-        String input;
-
         while (true) {
             while (true) {
                 Menu();
@@ -99,6 +100,17 @@ public class StudentModule {
         System.out.print("Your Selection ---> ");
     }
 
+    public void SubMenu() {
+        System.out.println("Edit Student Detail");
+        System.out.println("1. Contact Number");
+        System.out.println("2. Address");
+        System.out.println("3. Postcode");
+        System.out.println("4. City");
+        System.out.println("5. State");
+        System.out.println("6. Return");
+        System.out.print("Your Selection ---> ");
+    }
+
     public void EditStudentDetail() {
 
         String contactNumber;
@@ -107,94 +119,137 @@ public class StudentModule {
         String city;
         String state;
 
-        System.out.println(Alignment.Display(50, StringVar.LBL_STUDENT_DETAIL, Alignment.Type.centerOnly));
-
         while (true) {
-            System.out.println(Alignment.Display(50,
-                    StringVar.LBL_CURRENT + StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber(),
-                    Alignment.Type.withBorderOnly));
-            System.out.print(StringVar.LBL_NEW + StringVar.LBL_CONTACT_NUMBER);
-            contactNumber = Main.scan.nextLine();
-            if (Validator.StringValidation(contactNumber, Validator.TypeOfValidation.empty)) {
+            while (true) {
+                SubMenu();
+                input = Main.scan.nextLine();
+
+                if (Main.checkInputMenu(6, input)) {
+                    break;
+                }
+            }
+
+            if (input.equals("6")) {
                 break;
             }
-        }
 
-        while (true) {
-            System.out.println(Alignment.Display(50,
-                    StringVar.LBL_CURRENT + StringVar.LBL_ADDRESS + Main.db.studentList.get(index).getAddress(),
-                    Alignment.Type.withBorderOnly));
-            System.out.print(StringVar.LBL_NEW + StringVar.LBL_ADDRESS);
-            address = Main.scan.nextLine();
-            if (Validator.StringValidation(address, Validator.TypeOfValidation.empty)) {
-                break;
+            System.out.println(Alignment.Display(50, StringVar.LBL_STUDENT_DETAIL, Alignment.Type.centerOnly));
+
+            switch (input) {
+                case "1":
+                    while (true) {
+                        System.out.println(Alignment.Display(50,
+                                StringVar.LBL_CURRENT + StringVar.LBL_CONTACT_NUMBER + Main.db.studentList.get(index).getContactNumber(),
+                                Alignment.Type.withBorderOnly));
+                        System.out.print(StringVar.LBL_NEW + StringVar.LBL_CONTACT_NUMBER);
+                        contactNumber = Main.scan.nextLine();
+                        if (!Validator.StringValidation(contactNumber, Validator.TypeOfValidation.empty)) {
+                            break;
+                        }
+                        if (!contactNumber.equals(Main.db.studentList.get(index).getContactNumber())) {
+                            Main.db.studentList.get(index).setContactNumber(contactNumber);
+                            break;
+                        }
+                    }
+                    break;
+                case "2":
+                    while (true) {
+                        System.out.println(Alignment.Display(50,
+                                StringVar.LBL_CURRENT + StringVar.LBL_ADDRESS + Main.db.studentList.get(index).getAddress(),
+                                Alignment.Type.withBorderOnly));
+                        System.out.print(StringVar.LBL_NEW + StringVar.LBL_ADDRESS);
+                        address = Main.scan.nextLine();
+                        if (!Validator.StringValidation(address, Validator.TypeOfValidation.empty)) {
+                            break;
+                        }
+                        if (!address.equals(Main.db.studentList.get(index).getAddress())) {
+                            Main.db.studentList.get(index).setAddress(address);
+                            break;
+                        }
+                    }
+                    break;
+                case "3":
+                    while (true) {
+                        System.out.println(Alignment.Display(50,
+                                StringVar.LBL_CURRENT + StringVar.LBL_POSTCODE + Main.db.studentList.get(index).getPostcode(),
+                                Alignment.Type.withBorderOnly));
+                        System.out.print(StringVar.LBL_NEW + StringVar.LBL_POSTCODE);
+                        postcode = Main.scan.nextLine();
+                        if (!Validator.StringValidation(postcode, Validator.TypeOfValidation.empty)) {
+                            break;
+                        }
+                        if (postcode.equals(Main.db.studentList.get(index).getPostcode())) {
+                            Main.db.studentList.get(index).setPostcode(postcode);
+                            break;
+                        }
+                    }
+                    break;
+                case "4":
+                    while (true) {
+                        System.out.println(Alignment.Display(50,
+                                StringVar.LBL_CURRENT + StringVar.LBL_CITY + Main.db.studentList.get(index).getCity(),
+                                Alignment.Type.withBorderOnly));
+                        System.out.print(StringVar.LBL_NEW + StringVar.LBL_CITY);
+                        city = Main.scan.nextLine();
+                        if (!Validator.StringValidation(city, Validator.TypeOfValidation.empty)) {
+                            break;
+                        }
+                        if (!city.equals(Main.db.studentList.get(index).getCity())) {
+                            Main.db.studentList.get(index).setCity(city);
+                            break;
+                        }
+                    }
+                    break;
+                case "5":
+                    while (true) {
+                        System.out.println(Alignment.Display(50,
+                                StringVar.LBL_CURRENT + StringVar.LBL_STATE + Main.db.studentList.get(index).getState(),
+                                Alignment.Type.withBorderOnly));
+                        System.out.print(StringVar.LBL_NEW + StringVar.LBL_STATE);
+                        state = Main.scan.nextLine();
+                        if (!Validator.StringValidation(state, Validator.TypeOfValidation.empty)) {
+                            break;
+                        }
+                        if (!state.equals(Main.db.studentList.get(index).getState())) {
+                            Main.db.studentList.get(index).setState(state);
+                            break;
+                        }
+                    }
+                    break;
+
             }
-        }
+//            if (UpdateContactInformation(contactNumber, address, postcode, city, state)) {
+//                Main.db.studentList.replace(index, student);
+//                ShowStudentDetail();
+//            }
 
-        while (true) {
-            System.out.println(Alignment.Display(50,
-                    StringVar.LBL_CURRENT + StringVar.LBL_POSTCODE + Main.db.studentList.get(index).getPostcode(),
-                    Alignment.Type.withBorderOnly));
-            System.out.print(StringVar.LBL_NEW + StringVar.LBL_POSTCODE);
-            postcode = Main.scan.nextLine();
-            if (Validator.StringValidation(postcode, Validator.TypeOfValidation.empty)) {
-                break;
-            }
-        }
-
-        while (true) {
-            System.out.println(Alignment.Display(50,
-                    StringVar.LBL_CURRENT + StringVar.LBL_CITY + Main.db.studentList.get(index).getCity(),
-                    Alignment.Type.withBorderOnly));
-            System.out.print(StringVar.LBL_NEW + StringVar.LBL_CITY);
-            city = Main.scan.nextLine();
-            if (Validator.StringValidation(city, Validator.TypeOfValidation.empty)) {
-                break;
-            }
-        }
-
-        while (true) {
-            System.out.println(Alignment.Display(50,
-                    StringVar.LBL_CURRENT + StringVar.LBL_STATE + Main.db.studentList.get(index).getState(),
-                    Alignment.Type.withBorderOnly));
-            System.out.print(StringVar.LBL_NEW + StringVar.LBL_STATE);
-            state = Main.scan.nextLine();
-            if (Validator.StringValidation(state, Validator.TypeOfValidation.empty)) {
-                break;
-            }
-        }
-
-        if (UpdateContactInformation(contactNumber, address, postcode, city, state)) {
-            Main.db.studentList.replace(index, student);
-            ShowStudentDetail();
         }
     }
 
-    private Boolean UpdateContactInformation(String contactNumber, String address, String postcode, String city, String state) {
-
-        if (!contactNumber.equals(Main.db.studentList.get(index).getContactNumber())) {
-            student.setContactNumber(contactNumber);
-        }
-        if (!address.equals(Main.db.studentList.get(index).getAddress())) {
-            student.setAddress(address);
-        }
-        if (!postcode.equals(Main.db.studentList.get(index).getPostcode())) {
-            student.setPostcode(postcode);
-        }
-        if (!city.equals(Main.db.studentList.get(index).getCity())) {
-            student.setCity(city);
-        }
-        if (!state.equals(Main.db.studentList.get(index).getState())) {
-            student.setState(state);
-        }
-
-        if (student != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+//    public Boolean UpdateContactInformation(String contactNumber, String address, String postcode, String city, String state) {
+//
+//        if (!contactNumber.equals(Main.db.studentList.get(index).getContactNumber())) {
+//            student.setContactNumber(contactNumber);
+//        }
+//        if (!address.equals(Main.db.studentList.get(index).getAddress())) {
+//            student.setAddress(address);
+//        }
+//        if (!postcode.equals(Main.db.studentList.get(index).getPostcode())) {
+//            student.setPostcode(postcode);
+//        }
+//        if (!city.equals(Main.db.studentList.get(index).getCity())) {
+//            student.setCity(city);
+//        }
+//        if (!state.equals(Main.db.studentList.get(index).getState())) {
+//            student.setState(state);
+//        }
+//
+//        if (student != null) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
     public void EditLoginCredential() {
 
         String currentPassword;
@@ -232,7 +287,7 @@ public class StudentModule {
         }
     }
 
-    private Boolean UpdatePassword(String currentPassword, String newPassword, String confirmNewPassword) {
+    public Boolean UpdatePassword(String currentPassword, String newPassword, String confirmNewPassword) {
 
         if ((currentPassword.equals(Main.db.studentList.get(index).getPassword()))) {
             if (newPassword.equals(confirmNewPassword)) {
