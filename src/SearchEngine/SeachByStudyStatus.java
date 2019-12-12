@@ -56,7 +56,7 @@ public class SeachByStudyStatus {
             }
 
             searchStudent(searchedList, status);
-            displaySearchResult(searchedList, choice);
+            displaySearchResult(searchedList, status);
         }// end looping module
 
     }
