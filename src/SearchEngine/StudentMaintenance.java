@@ -67,6 +67,26 @@ public class StudentMaintenance {
         }
     }
 
+    private void SubNavigation() {
+
+        while (true) {
+            while (true) {
+                SubMenu();
+                input = Main.scan.nextLine();
+
+                if (Main.checkInputMenu(4, input)) {
+                    break;
+                }
+            }
+
+            if (input.equals("4")) {
+                break;
+            }
+
+            EditStudentDetail(Integer.parseInt(input));
+        }
+    }
+
     public void DisplaySearchResult(List<Student> list) {
         Integer count = 0;
         if (list != null && list.size() > 0) {
@@ -95,8 +115,7 @@ public class StudentMaintenance {
                     break;
                 }
             }
-
-            EditStudentDetail(Integer.parseInt(input));
+            SubNavigation();
         }
     }
 
@@ -176,10 +195,10 @@ public class StudentMaintenance {
 
     public void SubMenu() {
         System.out.println("Edit");
-        System.out.println("1. First Name");
-        System.out.println("2. Last Name");
-        System.out.println("2. IC Number");
-        System.out.println("3. Return");
+        System.out.println("1. IC Number");
+        System.out.println("2. First Name");
+        System.out.println("3. Last Name");
+        System.out.println("4. Return");
         System.out.print("Your Selection ---> ");
     }
 }
