@@ -73,19 +73,19 @@ public class AdminModuleTest {
         // TODO review the generated test code and remove the default call to fail.
     }
 
-//    @Test
-//    public void testRegisterStudent() {
-//        System.out.println("RegisterStudent");
-//        AdminModule instance = new AdminModule();
-//
-//        Student newStudent = new Student("Kuek", "Yong Yee", "123456789012", "Foundation");
-//        StudentRegistration newRegistration = new StudentRegistration(new Date(), "approved", newStudent);
-//
-//        instance.addStudent(newStudent, newRegistration);
-//
-//        assertTrue(Main.db.registerList.contains(newRegistration));
-//        assertTrue(Main.db.studentList.contains(newStudent));
-//
-//    }
+    @Test
+    public void testRegisterStudent() {
+        System.out.println("RegisterStudent");
+        AdminModule instance = new AdminModule();
+
+        Student newStudent = new Student("Kuek", "Yong Yee", "123456789012", "Foundation");
+        StudentRegistration newRegistration = new StudentRegistration(new Date(), "approved", newStudent);
+
+        instance.addStudent(newStudent, newRegistration);
+
+        assertTrue(Main.db.registerList.contains(newRegistration));
+        assertTrue(Main.db.studentList.contains(newStudent));
+
+    }
 
 }
