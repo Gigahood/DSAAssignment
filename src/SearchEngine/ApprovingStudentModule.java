@@ -15,15 +15,21 @@ public class ApprovingStudentModule {
         String id = Main.scan.nextLine();
 
         StudentRegistration student = validateRegistrationID(id);
-        if (student != null) {
+        
+        if (!student.getStatus().equals("pending")) {
+            System.out.println(ConsoleColors.RED_BOLD + "This Student Is Not Pending" + ConsoleColors.RESET);
+            System.out.println("Press Enter To Continue");
+            Main.scan.nextLine();
+        } else if (student != null) {
             approveStudent(student);
         }
+    
     }
 
     private StudentRegistration validateRegistrationID(String registrationID) {
         int length = Main.db.registerList.size();
 
-        if (registrationID.isEmpty() || registrationID == null) {
+        if (registrationID.isEmpty() || registrationID == null ) {
             System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
             System.out.println("Press Enter To Continue");
             Main.scan.nextLine();
