@@ -71,7 +71,7 @@ public class SeachByStudyStatus {
         System.out.println("****************** Search By Study Status *******************");
         System.out.println("");
         System.out.println("");
-        System.out.println(ConsoleColors.BLUE_BOLD + "/* " + "Good - 'g', Probation - 'p', Warning - 'w', Final Warning - 'f' " + " */" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "/* " + "Good - 'g', Probation - 'p', Warning - 'w', Final Warning - 'f' " + " */" + ConsoleColors.RESET);
         System.out.println("");
         System.out.println("Please type in which status that you want to search : ");
         System.out.println("Press 0 to back to previous page.");
@@ -124,35 +124,33 @@ public class SeachByStudyStatus {
     public void displaySearchResult(MyArrayList<Student> searchedList, String status) {
         Main.clearScreen();
 
-        String formating = "%1$-20s";
-        String formatingB = "%1$-10s";
+        String formating = "%1$-24s";
+        String formatingB = "%1$-11s";
         System.out.println("********************* Searched Result *************************");
-
-        if (searchedList.isEmpty()) {
-            System.out.println(ConsoleColors.CYAN_BACKGROUND + "* Total Result : " + searchedList.size() + " *" + ConsoleColors.RESET);
+        
+        
 
             System.out.format(formatingB, "ID");
             System.out.format(formating, "Name");
             System.out.format(formatingB, "CGPA");
-            System.out.format(formating, "Status");
+            System.out.format(formatingB, "Status");
             System.out.println("\n_________________________________________________________");
-            System.out.println(ConsoleColors.YELLOW_BACKGROUND + "Currently No Student Under " + status + ConsoleColors.RESET);
+            
+        if (searchedList.isEmpty()) {
+            
+            System.out.println( "        " + ConsoleColors.YELLOW_BACKGROUND +"Currently No Student Under " + status + ConsoleColors.RESET);
+            System.out.println("");
+            System.out.println("_________________________________________________________");
         } 
         else {
-            System.out.println(ConsoleColors.CYAN_BACKGROUND + "* Total Result : " + (searchedList.size() + 1) + " *" + ConsoleColors.RESET);
-
-            System.out.format(formatingB, "ID");
-            System.out.format(formating, "Name");
-            System.out.format(formatingB, "CGPA");
-            System.out.format(formating, "Status");
-            System.out.println("\n_________________________________________________________");
+            
             for (int i = 0; i < searchedList.size(); i++) {
                 System.out.println(searchedList.get(i).toStringbySearch());
                 System.out.println("_________________________________________________________");
 
             }
         }
-
+        System.out.println(ConsoleColors.CYAN_BACKGROUND +"                                    * Total Result : " + searchedList.size() + " *" + ConsoleColors.RESET);
         System.out.println("");
         System.out.println("");
 
@@ -187,14 +185,15 @@ public class SeachByStudyStatus {
             return false;
         } else 
         if (!isNumeric(id)) {
-            System.out.println(ConsoleColors.RED_BOLD + "INVALID INPUT! Please key in with integer." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in with integer." + ConsoleColors.RESET);
             return false;
         } else if (validID(id)) {
-            System.out.println(ConsoleColors.RED_BOLD + "Invalid ID! Please press again with the correct ID~" + ConsoleColors.RESET);
+            
             return false;
         }
-
-        return true;
+        else 
+            validID(id);
+            return true;
     }
 
     private boolean validID(String id) {
@@ -208,6 +207,9 @@ public class SeachByStudyStatus {
                 System.out.println(Main.db.studentList.get(i).toString());
                 break;
             }
+            else 
+                System.out.println(ConsoleColors.BLUE_BOLD + "Invalid ID! Please press again with the correct ID~" + ConsoleColors.RESET);
+                break;
         }
         return true;
     }

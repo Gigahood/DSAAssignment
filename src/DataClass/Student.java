@@ -177,8 +177,8 @@ public class Student {
     }
     
     public String toStringbySearch() {
-        String formating = "%1$-20s";
-        String formatingB = "%1$-10s";
+        String formating = "%1$-24s";
+        String formatingB = "%1$-11s";
         
          System.out.format(formatingB,this.studentID);
          System.out.format(formating,this.firstName + " " + this.lastName); 
