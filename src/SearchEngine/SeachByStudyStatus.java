@@ -5,14 +5,19 @@
  */
 package SearchEngine;
 
+import Constant.ConsoleColors;
 import DataClass.Student;
 import DataStructureClass.MyArrayList;
+import java.util.Collections;
 
 /**
  *
  * @author User
  */
 public class SeachByStudyStatus {
+
+    Student student;
+    int index;
 
     public SeachByStudyStatus() {
     }
@@ -37,6 +42,8 @@ public class SeachByStudyStatus {
 
             choice = choice.toLowerCase();
             MyArrayList<Student> searchedList = new MyArrayList<>();
+            setStatus();
+
             String status = "";
 
             switch (choice) {
@@ -49,7 +56,9 @@ public class SeachByStudyStatus {
                 case "w":
                     status = "warning";
                     break;
-
+                case "f":
+                    status = "final warning";
+                    break;
             }
 
             searchStudent(searchedList, status);
@@ -59,10 +68,11 @@ public class SeachByStudyStatus {
     }
 
     private void menuUI() {
-        System.out.println("*********Search By Study Status****************");
+        System.out.println("****************** Search By Study Status *******************");
         System.out.println("");
         System.out.println("");
-        System.out.println("Good - 'g', Probation - 'p', Warning - 'w' ");
+        System.out.println(ConsoleColors.BLUE_BOLD + "/* " + "Good - 'g', Probation - 'p', Warning - 'w', Final Warning - 'f' " + " */" + ConsoleColors.RESET);
+        System.out.println("");
         System.out.println("Please type in which status that you want to search : ");
         System.out.println("Press 0 to back to previous page.");
         System.out.println("");
@@ -71,12 +81,12 @@ public class SeachByStudyStatus {
 
     private boolean validateMenuInput(String s) {
         if (s.isEmpty()) {
-            System.out.println("No Empty Space!");
+            System.out.println(ConsoleColors.RED_BOLD + "No Empty input!" + ConsoleColors.RESET);
             System.out.println("Press enter to continue");
             Main.scan.nextLine();
             return false;
-        } else if (!s.equals("g") && !s.equals("p") && !s.equals("w") && !s.equals("f")&&!s.equals("0")) {
-            System.out.println("Please type with the caracter of 'g', 'p', 'w' or 0 to back to menu.");
+        } else if (!s.equals("g") && !s.equals("p") && !s.equals("w") && !s.equals("f") && !s.equals("0")) {
+            System.out.println(ConsoleColors.RED_BOLD + "Please type with the character of 'g', 'p', 'w' or 0 to back to menu." + ConsoleColors.RESET);
             System.out.println("Press enter to continue");
             Main.scan.nextLine();
             return false;
@@ -97,35 +107,143 @@ public class SeachByStudyStatus {
         }
     }
 
-    private void displaySearchResult(MyArrayList<Student> searchedList, String status) {
-        //Main.clearScreen();
+    private void setStatus() {
+
+        for (int i = 0; i < Main.db.studentList.size(); i++) {
+
+            if (Main.db.studentList.get(i).getCgpa() >= 2.0) {
+                Main.db.studentList.get(i).setStudyStatus("good");
+            } else if (Main.db.studentList.get(i).getCgpa() < 2.0 && Main.db.studentList.get(i).getCgpa() >= 1.0) {
+                Main.db.studentList.get(i).setStudyStatus("probation");
+            } else {
+                Main.db.studentList.get(i).setStudyStatus("warning");
+            }
+        }
+    }
+
+    public void displaySearchResult(MyArrayList<Student> searchedList, String status) {
+        Main.clearScreen();
+
         String formating = "%1$-20s";
         String formatingB = "%1$-10s";
-        System.out.println("***************Searched Result*************************");
-        System.out.println("");
-        System.out.println("");
-        System.out.format(formatingB,"ID");
-                System.out.format(formating,"Name");
-                System.out.format(formatingB,"CGPA");
-                System.out.format(formating,"Status");
-                System.out.println("\n_________________________________________________________");
-                
-                
+        System.out.println("********************* Searched Result *************************");
+
         if (searchedList.isEmpty()) {
-            System.out.println("Currently No Student Under " + status);
+            System.out.println(ConsoleColors.CYAN_BACKGROUND + "* Total Result : " + searchedList.size() + " *" + ConsoleColors.RESET);
+
+            System.out.format(formatingB, "ID");
+            System.out.format(formating, "Name");
+            System.out.format(formatingB, "CGPA");
+            System.out.format(formating, "Status");
+            System.out.println("\n_________________________________________________________");
+            System.out.println(ConsoleColors.YELLOW_BACKGROUND + "Currently No Student Under " + status + ConsoleColors.RESET);
         } 
         else {
+            System.out.println(ConsoleColors.CYAN_BACKGROUND + "* Total Result : " + (searchedList.size() + 1) + " *" + ConsoleColors.RESET);
+
+            System.out.format(formatingB, "ID");
+            System.out.format(formating, "Name");
+            System.out.format(formatingB, "CGPA");
+            System.out.format(formating, "Status");
+            System.out.println("\n_________________________________________________________");
             for (int i = 0; i < searchedList.size(); i++) {
-                
                 System.out.println(searchedList.get(i).toStringbySearch());
-                System.out.println("");
+                System.out.println("_________________________________________________________");
+
             }
         }
 
         System.out.println("");
         System.out.println("");
-        System.out.println("Search Result : " + searchedList.size());
-        System.out.println("Press enter to continue");
-        Main.scan.nextLine();
+
+        while (true) {
+
+            System.out.println("Enter the student ID to search for the details.");
+            System.out.println("Press 0 to go back to the menu~");
+            System.out.print("Your Choice ->");
+            String choice = Main.scan.nextLine();
+            if (choice.equals("0")) {
+                break;
+            }
+            if (!validate(choice)) {
+
+                System.out.println("");
+
+                System.out.println("Press Enter to be continous.");
+                Main.scan.nextLine();
+
+                Main.clearScreen();
+                displaySearchResult(searchedList, status);
+                break;
+            } 
+        }
+
     }
+
+    private boolean validate(String id) {
+
+        if (id.isEmpty()) {
+            System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
+            return false;
+        } else 
+        if (!isNumeric(id)) {
+            System.out.println(ConsoleColors.RED_BOLD + "INVALID INPUT! Please key in with integer." + ConsoleColors.RESET);
+            return false;
+        } else if (validID(id)) {
+            System.out.println(ConsoleColors.RED_BOLD + "Invalid ID! Please press again with the correct ID~" + ConsoleColors.RESET);
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validID(String id) {
+        for (int i = 0; i < Main.db.studentList.size(); i++) {
+            if (Main.db.studentList.get(i).getStudentID().equals(id)) {
+
+                index = i;
+                student = Main.db.studentList.get(i);
+                Main.clearScreen();
+                System.out.println("------Students Information------");
+                System.out.println(Main.db.studentList.get(i).toString());
+                break;
+            }
+        }
+        return true;
+    }
+
+    private boolean isNumeric(String input) {
+        try {
+            long d = Long.parseLong(input);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
 }
+
+//    private void printPage(MyArrayList<Student> searchedList) {
+//
+//        //int countPage = 1;
+//        int i;
+//
+//        for (i = 0; i < searchedList.size(); i++) {
+//
+//            for (int j = i; j < 8; j++) {
+//
+//                System.out.println(searchedList.get(j).toStringbySearch());
+//                System.out.println("_________________________________________________________");
+//
+//            }
+//
+//            //System.out.println("                                                page: " + countPage);
+//            //countPage++;
+//
+////            System.out.println("press enter to next page.");
+////            Main.scan.nextLine();
+//
+//        }
+//
+//    }
+
