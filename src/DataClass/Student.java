@@ -32,7 +32,7 @@ public class Student {
         this.password = ic;
         this.eduBackground = eduBackground;
         this.cgpa = 0.00;
-        this.studyStatus = "good";
+        this.studyStatus = "Good";
     }
 
     public Student(String firstName, String lastName, String ic, String eduBackground, String contactNumber, String address, String postcode, String city, String state) {

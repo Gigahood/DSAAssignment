@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Desktop/Assignment/DSAAssignment/src/SearchEngine/SearchRegistrationStatus.java</file>
-            <file>file:/C:/Users/User/Desktop/Assignment/DSAAssignment/test/SearchEngine/SearchRegistrationStatusTest.java</file>
+            <file>file:/C:/Users/User/Desktop/Github/DSAAssignmentNew/src/SearchEngine/AdminModule.java</file>
+            <file>file:/C:/Users/User/Desktop/Github/DSAAssignmentNew/src/SearchEngine/Database.java</file>
+            <file>file:/C:/Users/User/Desktop/Github/DSAAssignmentNew/src/DataClass/StudentRegistration.java</file>
+            <file>file:/C:/Users/User/Desktop/Github/DSAAssignmentNew/src/DataClass/Student.java</file>
+            <file>file:/C:/Users/User/Desktop/Github/DSAAssignmentNew/test/SearchEngine/SearchRegistrationStatusTest.java</file>
+            <file>file:/C:/Users/User/Desktop/Github/DSAAssignmentNew/test/SearchEngine/AdminModuleTest.java</file>
         </group>
     </open-files>
 </project-private>

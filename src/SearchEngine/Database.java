@@ -41,6 +41,13 @@ public class Database {
         registerList.add(r5);
         studentList.add(s5);
         
+        date.set(2019, 8, 10);
+        Student s99 = new Student("Pong", "Chia Zhen", "961226025845", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r99 = new StudentRegistration(date.getTime(), "approved", s5);
+        s99.setStudyStatus("Probation");
+        registerList.add(r99);
+        studentList.add(s99);
+        
         for (int i = 6 ; i < 20; i++) {
             date.set(2019, 9, i);
             String firstName = randomFirstName();
