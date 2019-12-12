@@ -101,8 +101,10 @@ public class AdminModule {
                 break;
             } else {
                 if (index == Main.db.studentList.size() - 1) {
+                    Main.clearScreen();
                     System.out.println("Student ID doesn't exist!");
                     System.out.println("Please press again.");
+                    Main.scan.nextLine();
                     break;
                 }
 
@@ -238,17 +240,19 @@ public class AdminModule {
                 System.out.println("1. Search By student ID");
                 System.out.println("2. Search By Registration Status");
                 System.out.println("3. Search By Student Name");
-                System.out.println("4. Return");
+                System.out.println("4. Search By Educational Background");
+                System.out.println("5. Search By Study Status");
+                System.out.println("6. Return");
                 System.out.println("");
                 System.out.print("Your Selection ---> ");
                 input = Main.scan.nextLine();
-                if (Main.checkInputMenu(4, input)) {
+                if (Main.checkInputMenu(6, input)) {
                     break;
                 }
 
             }
 
-            if (input.equals("4")) {
+            if (input.equals("6")) {
                 break;
             }
 
@@ -262,6 +266,16 @@ public class AdminModule {
                     break;
                 case "3":
                     SearchName sn = new SearchName();
+                    break;
+                case "4" :
+                    SeachEduBackground es = new SeachEduBackground();
+                    es.start();
+                    break;
+                case "5" : 
+                    SeachByStudyStatus ss = new SeachByStudyStatus();
+                    ss.start();
+                    break;
+                    
             }
 
         }
