@@ -60,7 +60,7 @@ public class Login {
         if (validateLogin(username, password, "student")) {
             
             // successful login will go into studentModule
-            StudentModule sm = new StudentModule(student, index);
+            StudentModule sm = new StudentModule(index);
 
         } else {
             

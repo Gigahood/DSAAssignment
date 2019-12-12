@@ -5,8 +5,12 @@ import Constant.StringVar;
 import DataClass.Student;
 import DataClass.StudentRegistration;
 import DataStructureClass.MyList;
+import StringHelper.Alignment;
+import StringHelper.Validator;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminModule {
@@ -34,7 +38,8 @@ public class AdminModule {
         System.out.println("Welcome, " + Main.db.adminList.get(index).getGender() + " " + Main.db.adminList.get(index).getName() + " ~");
         System.out.println("1. Search Student Detail");
         System.out.println("2. Register Student");
-        System.out.println("3. Return");
+        System.out.println("3. Update Student Detail");
+        System.out.println("4. Return");
         System.out.print("Your Selection ---> ");
     }
 
@@ -45,12 +50,12 @@ public class AdminModule {
                 Menu();
                 input = Main.scan.nextLine();
 
-                if (Main.checkInputMenu(3, input)) {
+                if (Main.checkInputMenu(4, input)) {
                     break;
                 }
             }
 
-            if (input.equals("3")) {
+            if (input.equals("4")) {
                 Main.clearScreen();
                 break;
             }
@@ -62,6 +67,10 @@ public class AdminModule {
 
                 case "2":
                     RegisterStudent();
+                    break;
+
+                case "3":
+                    new StudentMaintenance();
                     break;
 
             }
@@ -110,8 +119,7 @@ public class AdminModule {
         } else if (!input.matches("[A-Za-z\\s]*$")) {
             System.out.println(ConsoleColors.PURPLE_BOLD + "INVALID INPUT! Only Accepted Character." + ConsoleColors.RESET);
             return false;
-        }
-        else if(!input.matches("^(?=.{2,}).+$")){    
+        } else if (!input.matches("^(?=.{2,}).+$")) {
             System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter at least two characters." + ConsoleColors.RESET);
             return false;
         } else {
@@ -273,7 +281,7 @@ public class AdminModule {
         }
 
     }
-    
+
     private boolean isNumeric(String input) {
         try {
             long d = Long.parseLong(input);
@@ -282,5 +290,4 @@ public class AdminModule {
         }
         return true;
     }
-
 }
