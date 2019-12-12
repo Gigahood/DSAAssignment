@@ -232,18 +232,20 @@ public class AdminModule {
                 System.out.println("1. Search By student ID");
                 System.out.println("2. Search By Registration Status");
                 System.out.println("3. Search By Student Name");
+                System.out.println("5. Search By Study Status");
+                System.out.println("6. Return");
                 System.out.println("4. Search By Educational Background");
                 System.out.println("5. Return");
                 System.out.println("");
                 System.out.print("Your Selection ---> ");
                 input = Main.scan.nextLine();
-                if (Main.checkInputMenu(5, input)) {
+                if (Main.checkInputMenu(6, input)) {
                     break;
                 }
 
             }
 
-            if (input.equals("5")) {
+            if (input.equals("6")) {
                 break;
             }
 
@@ -258,9 +260,10 @@ public class AdminModule {
                 case "3":
                     SearchName sn = new SearchName();
                     break;
-                case "4":
-                    SeachEduBackground seu = new SeachEduBackground();
-                    break;
+                case "5" : 
+                    SeachByStudyStatus ss = new SeachByStudyStatus();
+                    ss.start();
+                    
             }
 
         }
