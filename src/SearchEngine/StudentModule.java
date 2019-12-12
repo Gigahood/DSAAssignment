@@ -1,23 +1,21 @@
 package SearchEngine;
 
 import Constant.StringVar;
-import DataClass.Student;
 import StringHelper.Alignment;
 import StringHelper.Validator;
 
 public class StudentModule {
 
-    private Student student;
     private int index;
     private String input;
 
-    public StudentModule(Student student, int index) {
-        this.student = student;
+    public StudentModule(int index) {
         this.index = index;
+        Navigation();
     }
 
     public StudentModule() {
-        Navigation();
+        
     }
 
     public void ShowStudentDetail() {
@@ -61,7 +59,7 @@ public class StudentModule {
         System.out.println();
     }
 
-    public void Navigation() {
+    private void Navigation() {
 
         while (true) {
             while (true) {
@@ -91,7 +89,7 @@ public class StudentModule {
         }
     }
 
-    public void Menu() {
+    private void Menu() {
         System.out.println("Student Module");
         System.out.println("1. View Student Detail");
         System.out.println("2. Edit Student Detail");
@@ -100,7 +98,7 @@ public class StudentModule {
         System.out.print("Your Selection ---> ");
     }
 
-    public void SubMenu() {
+    private void SubMenu() {
         System.out.println("Edit Student Detail");
         System.out.println("1. Contact Number");
         System.out.println("2. Address");
@@ -150,6 +148,7 @@ public class StudentModule {
                             Main.db.studentList.get(index).setContactNumber(contactNumber);
                             break;
                         }
+                        break;
                     }
                     break;
                 case "2":
@@ -166,6 +165,7 @@ public class StudentModule {
                             Main.db.studentList.get(index).setAddress(address);
                             break;
                         }
+                        break;
                     }
                     break;
                 case "3":
@@ -178,10 +178,11 @@ public class StudentModule {
                         if (!Validator.StringValidation(postcode, Validator.TypeOfValidation.empty)) {
                             break;
                         }
-                        if (postcode.equals(Main.db.studentList.get(index).getPostcode())) {
+                        if (!postcode.equals(Main.db.studentList.get(index).getPostcode())) {
                             Main.db.studentList.get(index).setPostcode(postcode);
                             break;
                         }
+                        break;
                     }
                     break;
                 case "4":
@@ -198,6 +199,7 @@ public class StudentModule {
                             Main.db.studentList.get(index).setCity(city);
                             break;
                         }
+                        break;
                     }
                     break;
                 case "5":
@@ -214,42 +216,14 @@ public class StudentModule {
                             Main.db.studentList.get(index).setState(state);
                             break;
                         }
+                        break;
                     }
                     break;
 
             }
-//            if (UpdateContactInformation(contactNumber, address, postcode, city, state)) {
-//                Main.db.studentList.replace(index, student);
-//                ShowStudentDetail();
-//            }
-
         }
     }
 
-//    public Boolean UpdateContactInformation(String contactNumber, String address, String postcode, String city, String state) {
-//
-//        if (!contactNumber.equals(Main.db.studentList.get(index).getContactNumber())) {
-//            student.setContactNumber(contactNumber);
-//        }
-//        if (!address.equals(Main.db.studentList.get(index).getAddress())) {
-//            student.setAddress(address);
-//        }
-//        if (!postcode.equals(Main.db.studentList.get(index).getPostcode())) {
-//            student.setPostcode(postcode);
-//        }
-//        if (!city.equals(Main.db.studentList.get(index).getCity())) {
-//            student.setCity(city);
-//        }
-//        if (!state.equals(Main.db.studentList.get(index).getState())) {
-//            student.setState(state);
-//        }
-//
-//        if (student != null) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
     public void EditLoginCredential() {
 
         String currentPassword;
@@ -283,7 +257,7 @@ public class StudentModule {
         }
 
         if (UpdatePassword(currentPassword, newPassword, confirmNewPassword)) {
-            Main.db.studentList.replace(index, student);
+            Main.db.studentList.get(index).setPassword(newPassword);
         }
     }
 
@@ -291,7 +265,6 @@ public class StudentModule {
 
         if ((currentPassword.equals(Main.db.studentList.get(index).getPassword()))) {
             if (newPassword.equals(confirmNewPassword)) {
-                student.setPassword(newPassword);
                 System.out.println(Alignment.Display(50, StringVar.MSG_UPDATE_SUCCESS_PASSWORD, Alignment.Type.centerWithAsterisk));
                 return true;
             } else {

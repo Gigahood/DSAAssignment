@@ -8,14 +8,14 @@ import java.util.List;
 
 public class SearchOperation {
 
-    static List<Student> students = new ArrayList<>();
+    static ArrayList<Student> students = new ArrayList<>();
     Student student = new Student();
 
-    public static List<Student> SearchByResult(Student student, SearchType searchType) {
+    public static ArrayList<Student> SearchByResult(Student student, SearchType searchType) {
         return SearchResult(student, searchType);
     }
 
-    private static List<Student> SearchResult(Student student, SearchType searchType) {
+    private static ArrayList<Student> SearchResult(Student student, SearchType searchType) {
 
         students = new ArrayList<>();
 
@@ -23,25 +23,25 @@ public class SearchOperation {
             try {
                 switch (searchType) {
                     case firstName:
-                        if (Main.db.studentList.get(i).getFirstName().contains(student.getFirstName())) {
+                        if (Main.db.studentList.get(i).getFirstName().toUpperCase().contains(student.getFirstName().toUpperCase())) {
                             students.add(Main.db.studentList.get(i));
                         }
                         break;
                     case lastName:
-                        if (Main.db.studentList.get(i).getLastName().contains(student.getLastName())) {
+                        if (Main.db.studentList.get(i).getLastName().toUpperCase().contains(student.getLastName().toUpperCase())) {
                             students.add(Main.db.studentList.get(i));
                         }
                         break;
-                    case studentIC:
-                        if (Main.db.studentList.get(i).getIc().contains(student.getIc())) {
-                            students.add(Main.db.studentList.get(i));
-                        }
-                        break;
-                    case studentID:
-                        if (Main.db.studentList.get(i).getStudentID().contains(student.getStudentID())) {
-                            students.add(Main.db.studentList.get(i));
-                        }
-                        break;
+//                    case studentIC:
+//                        if (Main.db.studentList.get(i).getIc().contains(student.getIc())) {
+//                            students.add(Main.db.studentList.get(i));
+//                        }
+//                        break;
+//                    case studentID:
+//                        if (Main.db.studentList.get(i).getStudentID().contains(student.getStudentID())) {
+//                            students.add(Main.db.studentList.get(i));
+//                        }
+//                        break;
                 }
             } catch (NullPointerException npe) {
                 System.out.println(npe.getMessage());
