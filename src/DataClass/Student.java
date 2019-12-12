@@ -33,6 +33,7 @@ public class Student {
         this.eduBackground = eduBackground;
         this.cgpa = 0.00;
         this.studyStatus = "good";
+        
     }
 
     public Student(String firstName, String lastName, String ic, String eduBackground, String contactNumber, String address, String postcode, String city, String state) {
@@ -171,8 +172,22 @@ public class Student {
                 + "\nAddress : " + this.address
                 + "\nPostcode : " + this.postcode
                 + "\nCity : " + this.city
-                + "\nState : " +this.state;
+                + "\nState : " +this.state
+                + "\nStudy Status :" +this.studyStatus;
     }
+    
+    public String toStringbySearch() {
+        String formating = "%1$-20s";
+        String formatingB = "%1$-10s";
+        
+         System.out.format(formatingB,this.studentID);
+         System.out.format(formating,this.firstName + " " + this.lastName); 
+         System.out.format(formating,this.cgpa);
+         System.out.format(formating,this.studyStatus);
+        
+        return " ";
+    }
+    
 
     public void setStudentID() {
         studentCount++;
