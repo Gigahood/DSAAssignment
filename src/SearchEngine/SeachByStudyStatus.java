@@ -127,30 +127,27 @@ public class SeachByStudyStatus {
         String formating = "%1$-24s";
         String formatingB = "%1$-11s";
         System.out.println("********************* Searched Result *************************");
-        
-        
 
-            System.out.format(formatingB, "ID");
-            System.out.format(formating, "Name");
-            System.out.format(formatingB, "CGPA");
-            System.out.format(formatingB, "Status");
-            System.out.println("\n_________________________________________________________");
-            
+        System.out.format(formatingB, "ID");
+        System.out.format(formating, "Name");
+        System.out.format(formatingB, "CGPA");
+        System.out.format(formatingB, "Status");
+        System.out.println("\n_________________________________________________________");
+
         if (searchedList.isEmpty()) {
-            
-            System.out.println( "        " + ConsoleColors.YELLOW_BACKGROUND +"Currently No Student Under " + status + ConsoleColors.RESET);
+
+            System.out.println("        " + ConsoleColors.YELLOW_BACKGROUND + "Currently No Student Under " + status + ConsoleColors.RESET);
             System.out.println("");
             System.out.println("_________________________________________________________");
-        } 
-        else {
-            
+        } else {
+
             for (int i = 0; i < searchedList.size(); i++) {
                 System.out.println(searchedList.get(i).toStringbySearch());
                 System.out.println("_________________________________________________________");
 
             }
         }
-        System.out.println(ConsoleColors.CYAN_BACKGROUND +"                                    * Total Result : " + searchedList.size() + " *" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.CYAN_BACKGROUND + "                                    * Total Result : " + searchedList.size() + " *" + ConsoleColors.RESET);
         System.out.println("");
         System.out.println("");
 
@@ -173,7 +170,7 @@ public class SeachByStudyStatus {
                 Main.clearScreen();
                 displaySearchResult(searchedList, status);
                 break;
-            } 
+            }
         }
 
     }
@@ -183,17 +180,16 @@ public class SeachByStudyStatus {
         if (id.isEmpty()) {
             System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
             return false;
-        } else 
-        if (!isNumeric(id)) {
+        } else if (!isNumeric(id)) {
             System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in with integer." + ConsoleColors.RESET);
             return false;
         } else if (validID(id)) {
-            
+
             return false;
-        }
-        else 
+        } else {
             validID(id);
-            return true;
+        }
+        return true;
     }
 
     private boolean validID(String id) {
@@ -205,12 +201,13 @@ public class SeachByStudyStatus {
                 Main.clearScreen();
                 System.out.println("------Students Information------");
                 System.out.println(Main.db.studentList.get(i).toString());
-                break;
-            }
-            else 
-                System.out.println(ConsoleColors.BLUE_BOLD + "Invalid ID! Please press again with the correct ID~" + ConsoleColors.RESET);
-                break;
+                return true;
+               // break;
+            } 
         }
+
+        System.out.println(ConsoleColors.BLUE_BOLD + "Invalid ID! Please press again with the correct ID~" + ConsoleColors.RESET);
+       // break;
         return true;
     }
 
