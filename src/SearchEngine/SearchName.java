@@ -69,7 +69,8 @@ public class SearchName {
             else
             {
                 System.out.println("Student ID doesn't exist!");
-                Main.scan.nextLine();
+                System.out.println("Press anything to continue...");
+                Main.scan.nextLine(); //breaking line to show the error
                 Main.clearScreen();
                 break;
             }
