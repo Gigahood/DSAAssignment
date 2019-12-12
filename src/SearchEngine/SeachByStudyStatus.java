@@ -106,7 +106,7 @@ public class SeachByStudyStatus {
         System.out.println("");
         System.out.format(formatingB,"ID");
                 System.out.format(formating,"Name");
-                System.out.format(formating,"CGPA");
+                System.out.format(formatingB,"CGPA");
                 System.out.format(formating,"Status");
                 System.out.println("\n_________________________________________________________");
                 

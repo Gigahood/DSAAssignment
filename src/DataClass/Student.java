@@ -182,7 +182,7 @@ public class Student {
         
          System.out.format(formatingB,this.studentID);
          System.out.format(formating,this.firstName + " " + this.lastName); 
-         System.out.format(formating,this.cgpa);
+         System.out.format(formatingB,this.cgpa);
          System.out.format(formating,this.studyStatus);
         
         return " ";

@@ -21,6 +21,7 @@ public class Database {
         Calendar date = Calendar.getInstance();
         Student s1 = new Student("Kuek", "Yong Boon", "940526105481", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
         StudentRegistration r1 = new StudentRegistration(date.getTime(), "approved", s1);
+        s1.setCgpa(4.0);
         registerList.add(r1);
         studentList.add(s1);
         
@@ -89,6 +90,7 @@ public class Database {
         Student s12 = new Student("Ong", "Huat", "961226025849", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
         StudentRegistration r12 = new StudentRegistration(date.getTime(), "approved", s12);
         s12.setStudyStatus("warning");
+        s12.setCgpa(Double.parseDouble(randomCgpa(2)));
         registerList.add(r12);
         studentList.add(s12);
         
@@ -96,15 +98,54 @@ public class Database {
         Student s13 = new Student("Ong", "Huat", "961226025849", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
         StudentRegistration r13 = new StudentRegistration(date.getTime(), "approved", s13);
         s13.setStudyStatus("warning");
+        s13.setCgpa(Double.parseDouble(randomCgpa(1)));
         registerList.add(r13);
         studentList.add(s13);
         
         date.set(2018, 3, 11);
         Student s14 = new Student("Ong", "Huat", "961226025849", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
         StudentRegistration r14 = new StudentRegistration(date.getTime(), "approved", s14);
+        s14.setCgpa(Double.parseDouble(randomCgpa(1)));
         s14.setStudyStatus("warning");
         registerList.add(r14);
         studentList.add(s14);
+        //--------------------------------------------------------------
+        date.set(2019, 8, 12);
+        Student s61 = new Student("Wong", "Ching Ling", "961226032846", "A-Level", "0124542723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r61 = new StudentRegistration(date.getTime(), "approved", s61);
+        registerList.add(r61);
+        studentList.add(s61);
+        
+        date.set(2019, 8, 20);
+        Student s71 = new Student("Tan", "Zhia Yi", "961224032846", "A-Level", "0124543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r71 = new StudentRegistration(date.getTime(), "approved", s71);
+        registerList.add(r71);
+        studentList.add(s71);
+        
+        date.set(2019, 8, 12);
+        Student s81 = new Student("Yeoh", "Ming Lin", "961326032846", "Diploma", "0134542723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r81 = new StudentRegistration(date.getTime(), "approved", s81);
+        registerList.add(r81);
+        studentList.add(s81);
+        
+        date.set(2019, 8, 1);
+        Student s91 = new Student("Tan", "Zhia Yi", "961224032846", "Diploma", "0114543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r91 = new StudentRegistration(date.getTime(), "approved", s91);
+        registerList.add(r91);
+        studentList.add(s91);
+        
+        date.set(2019, 8, 12);
+        Student s18 = new Student("Tan", "Min Jie", "931326032846", "Form 6", "0164542723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r18 = new StudentRegistration(date.getTime(), "approved", s18);
+        registerList.add(r18);
+        studentList.add(s18);
+        
+        date.set(2019, 8, 1);
+        Student s111= new Student("Wong", "Kar Hor", "921224032846", "Form 6", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
+        StudentRegistration r111= new StudentRegistration(date.getTime(), "approved", s111);
+        registerList.add(r111);
+        studentList.add(s111);
+        //-----------------------------------------------------------------------------
         
         for (int i = 6 ; i < 20; i++) {
             date.set(2018, 9, i);
@@ -114,6 +155,7 @@ public class Database {
             
             Student s = new Student(firstName, lastName + "Yi", randomIC, "Foundation");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
+            s.setCgpa(Double.parseDouble(randomCgpa(3)));
             s.setStudyStatus("good");
             registerList.add(r);
             studentList.add(s);
@@ -128,6 +170,7 @@ public class Database {
             Student s = new Student(firstName, "Wee"+ lastName, randomIC, "Foundation");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
             s.setStudyStatus("probation");
+            s.setCgpa(Double.parseDouble(randomCgpa(2)));
             registerList.add(r);
             studentList.add(s);
         }
@@ -140,45 +183,12 @@ public class Database {
             Student s = new Student(firstName, lastName + "Qi", randomIC, "Foundation");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
             s.setStudyStatus("warning");
+            s.setCgpa(Double.parseDouble(randomCgpa(1)));
             registerList.add(r);
             studentList.add(s);
         }
         
-        date.set(2019, 8, 12);
-        Student s61 = new Student("Wong", "Ching Ling", "961226032846", "A-Level", "0124542723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r61 = new StudentRegistration(date.getTime(), "approved", s6);
-        registerList.add(r61);
-        studentList.add(s61);
         
-        date.set(2019, 8, 20);
-        Student s71 = new Student("Tan", "Zhia Yi", "961224032846", "A-Level", "0124543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r71 = new StudentRegistration(date.getTime(), "approved", s7);
-        registerList.add(r71);
-        studentList.add(s71);
-        
-        date.set(2019, 8, 12);
-        Student s81 = new Student("Yeoh", "Ming Lin", "961326032846", "Diploma", "0134542723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r81 = new StudentRegistration(date.getTime(), "approved", s8);
-        registerList.add(r81);
-        studentList.add(s81);
-        
-        date.set(2019, 8, 1);
-        Student s91 = new Student("Tan", "Zhia Yi", "961224032846", "Diploma", "0114543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r91 = new StudentRegistration(date.getTime(), "approved", s9);
-        registerList.add(r91);
-        studentList.add(s91);
-        
-        date.set(2019, 8, 12);
-        Student s18 = new Student("Tan", "Min Jie", "931326032846", "Form 6", "0164542723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r18 = new StudentRegistration(date.getTime(), "approved", s10);
-        registerList.add(r18);
-        studentList.add(s18);
-        
-        date.set(2019, 8, 1);
-        Student s111= new Student("Wong", "Kar Hor", "921224032846", "Form 6", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r111= new StudentRegistration(date.getTime(), "approved", s11);
-        registerList.add(r111);
-        studentList.add(s111);
         
         
         for (int i = 6 ; i < 20; i++) {
@@ -200,9 +210,15 @@ public class Database {
     
     private String randomFirstName(int limit) {
         String str = "";
+        String s ;
         Random rnd = new Random();
         for (int i = 0; i < limit; i++) {
-            str += (char) (rnd.nextInt(26) + 'a');
+            if (i == 0) {
+                str += (char) (rnd.nextInt(26) + 'A');
+            } else {
+                str += (char) (rnd.nextInt(26) + 'a');
+            }
+            
         }
         
         return str;
@@ -213,6 +229,16 @@ public class Database {
         Random rnd = new Random();
         for (int i = 0; i < limit; i++) {
             str += (char) (rnd.nextInt(26) + 'a');
+        }
+        
+        return str;
+    }
+    
+    private String randomCgpa(int number) {
+        String str = number + ".";
+        Random rnd = new Random();
+        for (int i = 0; i < 2; i++) {
+            str += rnd.nextInt(10);
         }
         
         return str;
