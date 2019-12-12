@@ -51,7 +51,7 @@ public class SeachEduBackground {
             }
             switch (input) {
                 case "1":
-                    retrieve_studentInfo("Test");
+                    retrieve_studentInfo("Foundation");
                     break;
                 case "2":
                     retrieve_studentInfo("Diploma");
