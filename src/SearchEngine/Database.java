@@ -108,8 +108,8 @@ public class Database {
         
         for (int i = 6 ; i < 20; i++) {
             date.set(2018, 9, i);
-            String firstName = "W"+randomFirstName(4);
-            String lastName = "Y"+randomLastName(4);
+            String firstName = randomFirstName(2);
+            String lastName = randomLastName(3);
             String randomIC = randomIC();
             
             Student s = new Student(firstName, lastName + "Yi", randomIC, "Foundation");
@@ -121,8 +121,8 @@ public class Database {
         
         for (int i = 6 ; i < 20; i++) {
             date.set(2018, 9, i);
-            String firstName = "L"+randomFirstName(3);
-            String lastName = "Y"+randomLastName(4);
+            String firstName = randomFirstName(3);
+            String lastName = randomLastName(4);
             String randomIC = randomIC();
             
             Student s = new Student(firstName, "Wee"+ lastName, randomIC, "Foundation");
@@ -134,8 +134,8 @@ public class Database {
         
         for (int i = 6 ; i < 20; i++) {
             date.set(2018, 9, i);
-            String firstName = "C"+randomFirstName(3);
-            String lastName = "Y"+randomLastName(4);
+            String firstName = randomFirstName(3);
+            String lastName = randomLastName(4);
             String randomIC = randomIC();
             Student s = new Student(firstName, lastName + "Qi", randomIC, "Foundation");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
