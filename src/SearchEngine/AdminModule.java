@@ -101,15 +101,14 @@ public class AdminModule {
         }
     }
 
-    public boolean validateEmptyInput(String input) {
+    public boolean validateStringInput(String input) {
         if (input.isEmpty()) {
             System.out.println(ConsoleColors.RED_BOLD + "CANNOT BE EMPTY FIELD!" + ConsoleColors.RESET);
             return false;
         } else if (!input.matches("[A-Za-z\\s]*$")) {
             System.out.println(ConsoleColors.PURPLE_BOLD + "INVALID INPUT! Only Accepted Character." + ConsoleColors.RESET);
             return false;
-        }
-        else if(!input.matches("^(?=.{2,}).+$")){    
+        } else if (!input.matches("^(?=.{2,}).+$")) {
             System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please enter at least two characters." + ConsoleColors.RESET);
             return false;
         } else {
@@ -151,7 +150,7 @@ public class AdminModule {
             System.out.format(formating, "First Name");
             firstName = scan.nextLine();
 
-            if (validateEmptyInput(firstName)) {
+            if (validateStringInput(firstName)) {
                 break;
             }
         }
@@ -159,7 +158,7 @@ public class AdminModule {
             System.out.format(formating, "Last Name");
             lastName = scan.nextLine();
 
-            if (validateEmptyInput(lastName)) {
+            if (validateStringInput(lastName)) {
                 break;
             }
 
@@ -177,7 +176,7 @@ public class AdminModule {
             System.out.format(formating, "Education Background");
             education = scan.nextLine();
 
-            if (validateEmptyInput(education)) {
+            if (validateStringInput(education)) {
                 break;
             }
         }
@@ -191,9 +190,8 @@ public class AdminModule {
             case "1":
 
                 Student newStudent = new Student(firstName, lastName, ic, education);
-                Main.db.studentList.add(newStudent);
                 StudentRegistration newRegistration = new StudentRegistration(new Date(), "approved", newStudent);
-                Main.db.registerList.add(newRegistration);
+                addStudent(newStudent, newRegistration);
 
                 System.out.println("");
                 System.out.println("");
@@ -259,7 +257,7 @@ public class AdminModule {
         }
 
     }
-    
+
     private boolean isNumeric(String input) {
         try {
             long d = Long.parseLong(input);
@@ -267,6 +265,13 @@ public class AdminModule {
             return false;
         }
         return true;
+    }
+
+    public void addStudent(Student student, StudentRegistration sr) {
+        if (student instanceof Student && sr instanceof StudentRegistration) {
+            Main.db.studentList.add(student);
+            Main.db.registerList.add(sr);
+        }
     }
 
 }
