@@ -6,6 +6,7 @@
 package SearchEngine;
 
 import Constant.ConsoleColors;
+import static Constant.ConsoleColors.*;
 import DataClass.Student;
 import DataStructureClass.MyArrayList;
 import java.util.Collections;
@@ -136,7 +137,8 @@ public class SeachByStudyStatus {
 
         if (searchedList.isEmpty()) {
 
-            System.out.println("        " + ConsoleColors.YELLOW_BACKGROUND + "Currently No Student Under " + status + ConsoleColors.RESET);
+            System.out.println("        " + ANSI_YELLOW_BACKGROUND + ANSI_RED+ "  Currently No Student Under  "
+                    + status + ANSI_RESET);
             System.out.println("");
             System.out.println("_________________________________________________________");
         } else {
@@ -147,7 +149,9 @@ public class SeachByStudyStatus {
 
             }
         }
-        System.out.println(ConsoleColors.CYAN_BACKGROUND + "                                    * Total Result : " + searchedList.size() + " *" + ConsoleColors.RESET);
+        System.out.println(ANSI_CYAN_BACKGROUND + ANSI_PURPLE
+                + "                                    * Total Result : " + searchedList.size() + " *"
+                + ANSI_RESET);
         System.out.println("");
         System.out.println("");
 
@@ -183,18 +187,17 @@ public class SeachByStudyStatus {
         } else if (!isNumeric(id)) {
             System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in with integer." + ConsoleColors.RESET);
             return false;
-        } else if (validID(id,searchedList)) {
+        } else if (validID(id, searchedList)) {
 
             return false;
         } else {
-            validID(id,searchedList);
+            validID(id, searchedList);
         }
         return true;
     }
 
-    private boolean validID(String id,  MyArrayList<Student> searchedList) {
+    private boolean validID(String id, MyArrayList<Student> searchedList) {
         for (int i = 0; i < searchedList.size(); i++) {
-            System.out.println(searchedList.get(i).getStudentID());
             if (searchedList.get(i).getStudentID().equals(id)) {
 
                 index = i;
@@ -203,12 +206,12 @@ public class SeachByStudyStatus {
                 System.out.println("------Students Information------");
                 System.out.println(searchedList.get(i).toString());
                 return true;
-               // break;
-            } 
+                // break;
+            }
         }
 
         System.out.println(ConsoleColors.BLUE_BOLD + "Invalid ID! Please press again with the correct ID~" + ConsoleColors.RESET);
-       // break;
+        // break;
         return true;
     }
 
