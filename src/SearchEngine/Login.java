@@ -12,8 +12,8 @@ public class Login {
         String input;
         Main.clearScreen();
         
-        System.out.println(Main.db.studentList.get(0).getStudentID());
-        System.out.println(Main.db.studentList.get(0).getPassword());
+        //System.out.println(Main.db.studentList.get(0).getStudentID());
+        //System.out.println(Main.db.studentList.get(0).getPassword());
         
         while (true) {
             while (true) {

@@ -160,7 +160,6 @@ public class Database {
             Student s = new Student(firstName, lastName +" "+ lastName, randomIC, "Foundation", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
             s.setCgpa(Double.parseDouble(randomCgpa(3)));
-            s.setStudyStatus("good");
             registerList.add(r);
             studentList.add(s);
         }
