@@ -1,4 +1,3 @@
-
 package DataClass;
 
 /**
@@ -52,11 +51,16 @@ public class Admin {
     public void setUsername(String username) {
         this.username = username;
     }
+    
+    
 
-    
-
-    
-    
-    
-    
+    @Override
+    public boolean equals(Object o) {
+        Admin a = (Admin)o;
+        
+        return (this.username.equals(a.getUsername()) 
+                && this.password.equals(a.getPassword())
+                && this.name.equals(a.getName()));
+    }
+     
 }

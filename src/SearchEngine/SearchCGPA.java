@@ -83,37 +83,40 @@ MyArrayList<Student> searchedList = new MyArrayList<>();
 
         String formating = "%1$-24s";
         String formatingB = "%1$-11s";
-        System.out.println("********************* Searched Result *************************");
+        System.out.println("********** Searched Result **************");
 
         System.out.format(formatingB, "ID");
         System.out.format(formating, "Name");
         System.out.format(formatingB, "CGPA");
-        System.out.println("\n_________________________________________________________");
+        System.out.println("\n-----------------------------------------");
 
         if (searchedList.isEmpty()) {
 
             System.out.println("        " + "Currently No Student's CGPA is " + df2.format(cgpa));
             System.out.println("");
-            System.out.println("_________________________________________________________");
         } else {
 
             for (int i = 0; i < searchedList.size(); i++) {
-                System.out.println(searchedList.get(i).toStringbySearch());
-                System.out.println("_________________________________________________________");
+                System.out.println(searchedList.get(i).toStringbycgpa());
 
             }
         }
-        System.out.println("                                    * Total Result : " + searchedList.size() + " *");
+        System.out.println("\n-----------------------------------------");
+        System.out.println("                    * Total Result : " + searchedList.size() + " *");
         System.out.println("");
         System.out.println("");
 
         confirm();
+        System.out.println("Please enter the student's id: ");
+        String sid = scan.nextLine();
+        Search(sid);
+        
 
         System.out.println("Press 0 will be continue on searching, others will back to search menu-");
         System.out.print("Your Choice ->");
         String choice = Main.scan.nextLine();
 
-        if (choice.equals(0)) {
+        if (choice.equals("0")) {
             SearchCGPAUI();
         } else {
             AdminModule am = new AdminModule();
@@ -121,27 +124,42 @@ MyArrayList<Student> searchedList = new MyArrayList<>();
     }
 
     public void confirm() {
-        System.out.println("Please enter the students's id to view information, 0 to back to menu, 1 re-enter to search cgpa:");
-        String id = scan.nextLine();
-
-        if (id.equals("")) {
-            if (id.equals("")) {
-                System.out.println("It cannot leave blank!");
-                System.out.println("Please enter the students's id to view information, 0 to back to menu, 1 re-enter to search cgpa:");
+        String id;
+        
+             while (true) {
+                System.out.println("0 to back to menu, 1 re-enter to search cgpa, 2 to view student information:");
                 id = scan.nextLine();
-            }
-        } else if (id.equals(0)) {
-            AdminModule ad = new AdminModule();
-        } else if (id.equals(1)) {
-            SearchCGPA();
+                if(!id.equals("1")&&!id.equals("2")&&!id.equals("0"))
+                    {
+                        System.out.println(" Not available");
+                    }
+                if (isNumeric(id)){
+                    break;
+                }
+            
+            
+             
+        switch(id){
+            case "0":
+                AdminModule ad = new AdminModule();
+                ad.searchStudentDetailUI();
+                break;
+            case"1":
+                SearchCGPAUI();
+                break;
+            case"2":
+                break;
+                
+        }
         }
 
-        Search(id);
+       
+
 
     }
 
     public void Search(String id) {
-        boolean test = false;
+        boolean test = true;
         for (int i = 0; i < Main.db.studentList.size(); i++) {
             if (Main.db.studentList.get(i).getStudentID().equals(id)) {
                 System.out.println(String.format("|%-50s|", StringVar.LBL_STUDENT_DETAIL));
@@ -151,13 +169,14 @@ MyArrayList<Student> searchedList = new MyArrayList<>();
                 System.out.println(String.format("|%-50s|", StringVar.LBL_IC_NUMBER + Main.db.studentList.get(i).getIc()));
                 System.out.println(String.format("|%-50s|", StringVar.LBL_STATUS + Main.db.studentList.get(i).getStudyStatus()));
                 System.out.println(String.format("|%-50s|", StringVar.LBL_CGPA + Main.db.studentList.get(i).getCgpa()));
-                test = true;
+                test = false;
                 break;
             }
-            if (test = false) {
+            
+        }
+        if (test = true) {
                 System.out.println("The student's id doesn't exist!");
             }
-        }
     }
 
     private boolean isNumeric(String input) {
@@ -173,5 +192,9 @@ MyArrayList<Student> searchedList = new MyArrayList<>();
         }
         return true;
     }
+    
+    
+    
+    
 
 }

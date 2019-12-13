@@ -29,4 +29,7 @@ public class StringVar {
     public static final String MSG_MATCH_FAIL_PASSWORD = "Password and Confirm Password Does Not Match";
     public static final String MSG_INVALID_PASSWORD = "Invalid Password";
     public static final String MSG_EMPTY = "The input should not be empty! ";
+
+    public static final String MSG_NO_RECORD_FOUND = "No Record Found";
+    public static final String LBL_RECORD_FOUND = " Record(s) Found";
 }
