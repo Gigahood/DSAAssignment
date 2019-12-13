@@ -229,7 +229,7 @@ public class AdminModule {
     /**
      * ***********************************************************************
      */
-    private void searchStudentDetailUI() {
+    public void searchStudentDetailUI() {
         String input;
         while (true) {
             while (true) {
@@ -241,7 +241,8 @@ public class AdminModule {
                 System.out.println("3. Search By Student Name");
                 System.out.println("4. Search By Educational Background");
                 System.out.println("5. Search By Study Status");
-                System.out.println("6. Return");
+                System.out.println("6. Search By CGPA");
+                System.out.println("7. Return");
                 System.out.println("");
                 System.out.print("Your Selection ---> ");
                 input = Main.scan.nextLine();
@@ -251,7 +252,7 @@ public class AdminModule {
 
             }
 
-            if (input.equals("6")) {
+            if (input.equals("7")) {
                 break;
             }
 
@@ -273,6 +274,10 @@ public class AdminModule {
                 case "5" : 
                     SeachByStudyStatus ss = new SeachByStudyStatus();
                     ss.start();
+                    break;
+                case "6" : 
+                    SearchCGPA sc = new SearchCGPA();
+                    sc.start();
                     break;
                     
             }
