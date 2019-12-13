@@ -46,7 +46,7 @@ public class Database {
         
         date.set(2018, 8, 10);
         Student s6 = new Student("Wong", "Yi En", "961226025849", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r6 = new StudentRegistration(date.getTime(), "approved", s5);
+        StudentRegistration r6 = new StudentRegistration(date.getTime(), "approved", s6);
         s6.setStudyStatus("probation");
         registerList.add(r6);
         studentList.add(s6);
@@ -193,7 +193,7 @@ public class Database {
         
         date.set(2019, 8, 10);
         Student s99 = new Student("Pong", "Chia Zhen", "961226025845", "Foundation", "0124542725", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
-        StudentRegistration r99 = new StudentRegistration(date.getTime(), "approved", s5);
+        StudentRegistration r99 = new StudentRegistration(date.getTime(), "approved", s99);
         s99.setStudyStatus("Probation");
         registerList.add(r99);
         studentList.add(s99);

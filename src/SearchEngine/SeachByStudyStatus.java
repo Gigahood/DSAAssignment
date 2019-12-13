@@ -160,7 +160,7 @@ public class SeachByStudyStatus {
             if (choice.equals("0")) {
                 break;
             }
-            if (!validate(choice)) {
+            if (!validate(choice, searchedList)) {
 
                 System.out.println("");
 
@@ -175,7 +175,7 @@ public class SeachByStudyStatus {
 
     }
 
-    private boolean validate(String id) {
+    private boolean validate(String id, MyArrayList<Student> searchedList) {
 
         if (id.isEmpty()) {
             System.out.println(ConsoleColors.RED_BOLD + "Cannot be empty field!" + ConsoleColors.RESET);
@@ -183,24 +183,25 @@ public class SeachByStudyStatus {
         } else if (!isNumeric(id)) {
             System.out.println(ConsoleColors.BLUE_BOLD + "INVALID INPUT! Please key in with integer." + ConsoleColors.RESET);
             return false;
-        } else if (validID(id)) {
+        } else if (validID(id,searchedList)) {
 
             return false;
         } else {
-            validID(id);
+            validID(id,searchedList);
         }
         return true;
     }
 
-    private boolean validID(String id) {
-        for (int i = 0; i < Main.db.studentList.size(); i++) {
-            if (Main.db.studentList.get(i).getStudentID().equals(id)) {
+    private boolean validID(String id,  MyArrayList<Student> searchedList) {
+        for (int i = 0; i < searchedList.size(); i++) {
+            System.out.println(searchedList.get(i).getStudentID());
+            if (searchedList.get(i).getStudentID().equals(id)) {
 
                 index = i;
-                student = Main.db.studentList.get(i);
+                student = searchedList.get(i);
                 Main.clearScreen();
                 System.out.println("------Students Information------");
-                System.out.println(Main.db.studentList.get(i).toString());
+                System.out.println(searchedList.get(i).toString());
                 return true;
                // break;
             } 
