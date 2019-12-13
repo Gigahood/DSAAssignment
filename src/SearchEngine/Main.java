@@ -50,7 +50,8 @@ public class Main {
                     new Login();
                     break;
                 case "2":
-                    new ViewRegistrationDetail();
+                    ViewRegistrationDetail v1 = new ViewRegistrationDetail();
+                    v1.start();
                     break;
                 case "3":
                     new Registration();

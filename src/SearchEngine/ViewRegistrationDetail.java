@@ -27,9 +27,12 @@ public class ViewRegistrationDetail {
 
     public ViewRegistrationDetail() {
         // provide back button
+        
+    }
+    
+    public void start() {
         counter = 0;
         inputScreen();
-
     }
 
     private void inputScreen() {
@@ -68,7 +71,7 @@ public class ViewRegistrationDetail {
 
     }
 
-    private boolean validateField(String num, String ic) {
+    public boolean validateField(String num, String ic) {
         //validation
         if (num.isEmpty() == true || ic.isEmpty() == true) {
             System.out.println(ConsoleColors.RED_BOLD + MSG_EMPTY + ConsoleColors.RESET);
@@ -94,7 +97,7 @@ public class ViewRegistrationDetail {
         return result;
     }
 
-    private boolean matchRegistrationID() {
+    public boolean matchRegistrationID() {
 
         //2 = ID is incorrect
         //3 = ID is not exist and/or incorrect password
@@ -162,6 +165,11 @@ public class ViewRegistrationDetail {
             counter++;
         }
         return !(flag2 || flag3);
+    }
+    
+    public void setVariable(String num, String ic) {
+        this.num = num;
+        this.ic = ic;
     }
 
 }
