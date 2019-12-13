@@ -103,7 +103,7 @@ MyArrayList<Student> searchedList = new MyArrayList<>();
 
             }
         }
-        System.out.println("                                    * Total Result : " + searchedList.size() + " *");
+        System.out.println(" Total Result : " + searchedList.size() + "");
         System.out.println("");
         System.out.println("");
 
