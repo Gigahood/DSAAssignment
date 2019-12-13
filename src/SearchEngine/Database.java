@@ -153,7 +153,7 @@ public class Database {
             String lastName = randomLastName(3);
             String randomIC = randomIC();
             
-            Student s = new Student(firstName, lastName + "Yi", randomIC, "Foundation");
+            Student s = new Student(firstName, lastName + "Yi", randomIC, "Foundation", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
             s.setCgpa(Double.parseDouble(randomCgpa(3)));
             s.setStudyStatus("good");
@@ -167,7 +167,7 @@ public class Database {
             String lastName = randomLastName(4);
             String randomIC = randomIC();
             
-            Student s = new Student(firstName, "Wee"+ lastName, randomIC, "Foundation");
+            Student s = new Student(firstName, "Wee"+ lastName, randomIC, "Foundation", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
             s.setStudyStatus("probation");
             s.setCgpa(Double.parseDouble(randomCgpa(2)));
@@ -180,7 +180,7 @@ public class Database {
             String firstName = randomFirstName(3);
             String lastName = randomLastName(4);
             String randomIC = randomIC();
-            Student s = new Student(firstName, lastName + "Qi", randomIC, "Foundation");
+            Student s = new Student(firstName, lastName + "Qi", randomIC, "Foundation", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
             StudentRegistration r = new StudentRegistration(date.getTime(), "approved", s);
             s.setStudyStatus("warning");
             s.setCgpa(Double.parseDouble(randomCgpa(1)));
@@ -202,7 +202,7 @@ public class Database {
             date.set(2019, 9, i);
             String firstName = randomFirstName(4);
             String randomIC = randomIC();
-            Student s = new Student(firstName, "Yong Tat", randomIC, "Foundation");
+            Student s = new Student(firstName, "Yong Tat", randomIC, "Foundation", "0194543723", "5, Taman Setali Jaya", "06660", "Bayang", "Johor");
             StudentRegistration r = new StudentRegistration(date.getTime(), "pending", s);
             registerList.add(r);
         }

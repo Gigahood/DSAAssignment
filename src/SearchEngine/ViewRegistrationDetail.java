@@ -105,6 +105,7 @@ public class ViewRegistrationDetail {
             flag2 = false;
             flag3 = false;
             StudentRegistration student = Main.db.registerList.get(i);
+            
             if (num.equals(student.getRegistrationID()) && ic.equals(student.getPassword())) {
                 if (student.getStatus().equals("approved")) {
                     Main.clearScreen();
@@ -137,11 +138,11 @@ public class ViewRegistrationDetail {
                     System.out.println();
                 }
                 break;
-            } else if (num.equals(student.getRegistrationID()) && !(ic.equals(student.getPassword()))) {
+            } else if (testForPassword(num, ic,student)) {
 
                 flag2 = true;
                 break;
-            } else if (!(num.equals(student.getRegistrationID())) && !(ic.equals(student.getPassword()))) {
+            } else if (testForID(num, ic,student)) {
                 flag3 = true;
             }
 
@@ -170,6 +171,14 @@ public class ViewRegistrationDetail {
     public void setVariable(String num, String ic) {
         this.num = num;
         this.ic = ic;
+    }
+    
+    public boolean testForPassword(String id, String ic,  StudentRegistration student) {
+        return (num.equals(student.getRegistrationID()) && !(ic.equals(student.getPassword())));
+    }
+    
+    public boolean testForID(String id, String ic,  StudentRegistration student) {
+        return (!(num.equals(student.getRegistrationID())) && !(ic.equals(student.getPassword())));
     }
 
 }

@@ -47,14 +47,17 @@ public class ViewRegistrationDetailTest {
     @Test
     public void testValidateField() {
         ViewRegistrationDetail instance = new ViewRegistrationDetail();
-
+        //both correct
         assertTrue(instance.validateField("190300001", "940526105481"));
-
+        //either ID or password is empty
+        assertFalse(instance.validateField("", ""));
         assertFalse(instance.validateField("", "940526105481"));
         assertFalse(instance.validateField("190300001", ""));
-        assertFalse(instance.validateField("adas", "adsad"));
-        assertFalse(instance.validateField("123", "123"));
-        assertFalse(instance.validateField("123", "123"));
+        //incorrect ID and password
+        assertFalse(instance.validateField("123", "adsad"));
+        //invalid length for the id
+        assertFalse(instance.validateField("123", "940526105481"));
+        assertFalse(instance.validateField("1234", "123"));
 
     }
 
@@ -74,7 +77,7 @@ public class ViewRegistrationDetailTest {
 
         instance.setVariable("123", "123");
         assertFalse(instance.matchRegistrationID());
-
+        
     }
 
 }
